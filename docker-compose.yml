@@ -1,12 +1,12 @@
-version: '3.8'
+version: '3'
 
 services:
   app:
-    image: 91maxore/php-nginx-app:latest  # Eller använd 'build:' om du bygger på servern
-    container_name: php-fpm-app
+    image: 91maxore/php-nginx-app:latest
+    container_name: my-php-app
     restart: unless-stopped
     expose:
-      - "9000"
+      - "80"
     environment:
       - VIRTUAL_HOST=wavvy.se
       - LETSENCRYPT_HOST=wavvy.se
