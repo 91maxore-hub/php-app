@@ -13,7 +13,7 @@
 
         <!-- Företagsinfo-ruta -->
         <div class="info-container">
-            <h3>🏢 Om Wavvy AB – Din digitala partner - NEW V3</h3>
+            <h3>🏢 Om Wavvy AB – Din digitala partner - NEW V4</h3>
             <p><strong>Wavvy AB</strong> är din digitala partner inom webbutveckling och IT. Sedan 2010 har vi hjälpt företag att växa, effektivisera och lyckas i en allt mer digital värld.</p>
 
             <p>🌐 <strong>Webbdesign & webbutveckling:</strong><br>
