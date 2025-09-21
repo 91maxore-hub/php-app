@@ -1,0 +1,27 @@
+name: Bygg och pusha Docker-image
+
+on:
+  push:
+    branches: [ "master" ]  # Ändra till "master" om det är din huvudgren
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛒 Klona repo
+        uses: actions/checkout@v3
+
+      - name: 🐳 Logga in på Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: 🔨 Bygg Docker-image
+        run: |
+          docker build -t 91maxore/php-nginx-app:latest .
+
+      - name: 📤 Pusha till Docker Hub
+        run: |
+          docker push 91maxore/php-nginx-app:latest
