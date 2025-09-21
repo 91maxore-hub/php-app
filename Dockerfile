@@ -19,6 +19,15 @@ WORKDIR /var/www/html
 # Kopiera din egen Nginx-konfiguration till standardplats
 COPY default.conf /etc/nginx/sites-available/default
 
+# Skapa användare
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Ändra ägarskap av arbetskatalog
+RUN chown -R appuser:appuser /var/www/html
+
+# Kör som appuser
+USER appuser
+
 # Exponera port 80 för webbtrafik utanför containern
 EXPOSE 80
 
