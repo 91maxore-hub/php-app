@@ -1,12 +1,12 @@
-version: '3.8'
+version: '3'
 
 services:
   app:
     image: 91maxore/php-nginx-app:latest
-    container_name: php-fpm-app
+    container_name: my-php-app
     restart: unless-stopped
     expose:
-      - "9000"
+      - "80"
     environment:
       - VIRTUAL_HOST=wavvy.se
       - LETSENCRYPT_HOST=wavvy.se
