@@ -32,4 +32,4 @@ USER appuser
 EXPOSE 80
 
 # Starta php-fpm i bakgrunden och nginx i förgrunden
-CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
+CMD ["php-fpm", "-F"]
