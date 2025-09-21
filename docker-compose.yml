@@ -11,7 +11,7 @@ services:
     environment:
       - VIRTUAL_HOST=wavvy.se
       - LETSENCRYPT_HOST=wavvy.se
-      - LETSENCRYPT_EMAIL=din@email.se
+      - LETSENCRYPT_EMAIL=91maxore@gafe.molndal.se
     networks:
       - webnet
 
