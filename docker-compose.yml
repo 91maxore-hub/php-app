@@ -1,16 +1,17 @@
-version: '3'
+version: '3.8'
 
 services:
   app:
-    image: 91maxore/php-nginx-app:latest
-    container_name: my-php-app
+    build:
+      context: .
+    container_name: php-fpm-app
     restart: unless-stopped
     expose:
-      - "80"
+      - "9000"
     environment:
       - VIRTUAL_HOST=wavvy.se
       - LETSENCRYPT_HOST=wavvy.se
-      - LETSENCRYPT_EMAIL=91maxore@gafe.molndal.se
+      - LETSENCRYPT_EMAIL=din@email.se
     networks:
       - webnet
 
