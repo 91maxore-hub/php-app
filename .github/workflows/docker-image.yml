@@ -7,6 +7,10 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    env:
+      VIRTUAL_HOST: ${{ secrets.VIRTUAL_HOST }}
+      LETSENCRYPT_HOST: ${{ secrets.LETSENCRYPT_HOST }}
+      LETSENCRYPT_EMAIL: ${{ secrets.LETSENCRYPT_EMAIL }}
 
     steps:
       - name: 🛒 Klona repo
