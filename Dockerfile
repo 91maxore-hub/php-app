@@ -1,26 +1,23 @@
-# Använd officiell PHP 8.2 FPM image som bas (PHP med FastCGI Process Manager)
+# PHP-FPM (ingen nginx längre)
 FROM php:8.2-fpm
 
-# Uppdatera paketlistan och installera Nginx webbserver
-RUN apt-get update && \
-    apt-get install -y nginx && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*  # Rensa cache för att hålla image liten
+# Skapa användaren 'appuser' (icke-root)
+RUN groupadd -r appuser && useradd -r -g appuser appuser
 
-# Ta bort standardfiler i Nginx webbroot för att undvika att visa standardstartsidan
-RUN rm -rf /var/www/html/*
-
-# Kopiera applikationens filer från din dator till containerns webbrot
+# Kopiera hela din app till rätt mapp
 COPY . /var/www/html
 
-# Byt arbetskatalog till webbrot, där index.php ligger
+# Ge äganderätt till appuser
+RUN chown -R appuser:appuser /var/www/html
+
+# Ange arbetsmapp
 WORKDIR /var/www/html
 
-# Kopiera din egen Nginx-konfiguration till standardplats
-COPY default.conf /etc/nginx/sites-available/default
+# Kör som icke-root
+USER appuser
 
-# Exponera port 80 för webbtrafik utanför containern
-EXPOSE 80
+# Exponera porten för PHP-FPM (internt)
+EXPOSE 9000
 
-# Starta php-fpm i bakgrunden och nginx i förgrunden
-CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
+# Starta php-fpm
+CMD ["php-fpm", "-F"]
