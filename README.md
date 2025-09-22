@@ -1,6 +1,6 @@
-# Distribution av webapp med Docker och Github Actions - Inlämningsuppgift 2
+# Distribution av webapp med Docker och Github Actions
 
-**Max Oredson - Azure**
+## Max Oredson - Azure
 
 GitHub Repo: https://github.com/91maxore-hub/php-app
 
