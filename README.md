@@ -362,22 +362,22 @@ Vi kan därmed granska att appen fungerar som den ska med HTTPS/SSL. Du kan äve
 
 Allt detta kommer sedan CI/CD via GitHub Actions lösa automatiskt via sin deployment-image, men vi testkör först dess funktionalitet för att se att allt fungerar som det ska.
 
-# 🔐 Automatisk HTTPS med miljövariabler**
+# 🔐 Automatisk HTTPS med miljövariabler
 
 För att konfigurera SSL och domännamnet använde jag tre miljövariabler som app-containern läser in: (under **environment**-delen i docker-compose.yml)
 
-1. VIRTUAL_HOST – domännamnet (wavvy.se)
-2. LETSENCRYPT_HOST – domännamnet som certifikatet ska utfärdas för (wavvy.se)
-3. LETSENCRYPT_EMAIL – min e-postadress för Let's Encrypt (91maxore@gafe.molndal.se)
+1. **VIRTUAL_HOST** – domännamnet (wavvy.se)
+2. **LETSENCRYPT_HOST** – domännamnet som certifikatet ska utfärdas för (wavvy.se)
+3. **LETSENCRYPT_EMAIL** – min e-postadress för Let's Encrypt (91maxore@gafe.molndal.se)
 
 Dessa värden sattes i en .env-fil, som senare under CI/CD kommer att genereras automatiskt av GitHub Actions under deployment.  
 Filen placeras i **nginx-reverse-proxy**-mappen som allt som rör docker/reverse proxy-konfiguration på container-hosten.
 
-# 🚀 Automatiserad deploy med GitHub Actions**
+# 🚀 Automatiserad deploy med GitHub Actions
 
 För att förenkla hela automatiseringsprocessen byggde och pushade jag min Docker-image automatiskt via GitHub Actions, och deployade den sedan direkt till servern via SSH. Allt detta kommer ske via min docker-image.yml
 
-**Steg 1. Initiera Git-repo**
+**Steg 1. Initiera Git-repo**  
 Öppna terminalen och bege dig till projektmappen där appens filer ligger på din lokala dator ex.
 
 ```bash
@@ -391,8 +391,7 @@ git init && git add . && git commit -m "CI/CD Pipeline - Första commit"
 
 **Steg 3: Skapa GitHub-repo**  
 Bege dig över till ditt GitHub-konto och skapa ett nytt repo på GitHub. (jag döpte min till **php-app2** enbart för att demonstrera)
-Efter att du skapat ditt repo kommer du bli hänvisad till följande instruktioner som du kan se nedan på bilden.   
-Kopiera **Quick setup**-länken och följ vidare instruktionerna på mitt nästa steg.
+Efter att du skapat ditt repo kommer du bli hänvisad till följande instruktioner som du kan se nedan på bilden. Kopiera **Quick setup**-länken och följ vidare instruktionerna på mitt nästa steg.
 
 ![alt text](image-8.png)
 
