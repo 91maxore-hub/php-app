@@ -8,7 +8,7 @@ Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje p
 
 GitHub Repo: https://github.com/91maxore-hub/php-app
 
-🛠️ Steg 1 – Skapandet av projektstruktur och grundfiler
+**🛠️ Steg 1 – Skapandet av projektstruktur och grundfiler**
 
 | Fil / Mapp      | Typ  | Beskrivning                       |
 | --------------- | ---- | --------------------------------- |
@@ -19,14 +19,14 @@ GitHub Repo: https://github.com/91maxore-hub/php-app
 
 Syftet med dessa filer var att skapa en minimal men fungerande webbsida som kunde paketeras i en Docker-image. index.php innehåller själva innehållet för sidan, style.css står för designen, och logo2.png används logobild för webbplatsen.
 
-Steg 2: Paketera som Docker Image och ladda upp till Docker Hub
+**Steg 2: Paketera som Docker Image och ladda upp till Docker Hub**
 
 Efter att projektstrukturen var klar (med index.php, style.css, logo2.png), gick jag vidare till att paketera projektet i en Docker-image och publicera den på Docker Hub.
-Jag började först med att skapa ett repo på Docker Hub som ska hålla min Docker-image som jag döpte till **php-nginx-app**
+Jag började först med att skapa ett repo på Docker Hub som ska hålla min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
 
 ![alt text](image.png)
 
-Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, Nginx, och kopierar in mina filer samt en egen Nginx-konfiguration:
+Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, Nginx, och kopierar in mina filer från **php-app** samt en egen Nginx-konfiguration:
 
 ```Dockerfile
 # Använd officiell PHP 8.2 FPM image som bas (PHP med FastCGI Process Manager)
@@ -82,14 +82,14 @@ server {
 }
 ```
 
-Byggandet av Docker Image
+1. **Byggandet av Docker Image**
 I terminalen körde jag följande kommando i projektmappen (där mina samtliga filer finns) för att bygga mina projektfiler till en Docker Image
 
 ```bash
 docker build -t 91maxore/php-nginx-app:latest .
 ```
 
-Loggade in på Docker Hub
+2. **Loggade in på Docker Hub**
 Jag loggade in med:
 ```bash
 docker login
@@ -97,7 +97,7 @@ docker login
 
 Och angav mitt användarnamn och lösenord som jag använder till Docker Hub.
 
-🚀 Pushade Docker Image till Docker Hub
+3. 🚀 **Pushade Docker Image till Docker Hub**
 ```bash
 docker push 91maxore/php-nginx-app:latest
 ```
@@ -113,7 +113,7 @@ För att först testa att containern fungerar som den ska, körde jag den med:
 docker run -d -p 8080:80 91maxore/php-nginx-app:latest
 ```
 
-Notera: Att jag kör Docker imagen mot port 8080
+Notera: Att jag kör Docker imagen mot port 8080 lokalt
 
 Sedan kunde jag öppna webappen i webbläsaren via:
 ```bash
