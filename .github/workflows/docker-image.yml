@@ -35,5 +35,11 @@ jobs:
           script: |
             cd /home/azureuser/nginx-reverse-proxy
 
-            VIRTUAL_HOST=${{ secrets.VIRTUAL_HOST }} LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }} LETSENCRYPT_EMAIL=${{ secrets.LETSENCRYPT_EMAIL }} sudo docker-compose pull && \
-            VIRTUAL_HOST=${{ secrets.VIRTUAL_HOST }} LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }} LETSENCRYPT_EMAIL=${{ secrets.LETSENCRYPT_EMAIL }} sudo docker-compose up -d
+            # Skapa/skriv över .env-fil med hemliga variabler
+            echo "VIRTUAL_HOST=${{ secrets.VIRTUAL_HOST }}" > .env
+            echo "LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }}" >> .env
+            echo "LETSENCRYPT_EMAIL=${{ secrets.LETSENCRYPT_EMAIL }}" >> .env
+
+            # Starta om containrarna, docker-compose läser nu variabler från .env-filen
+            sudo docker-compose pull
+            sudo docker-compose up -d
