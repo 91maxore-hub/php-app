@@ -28,6 +28,14 @@ Jag började först med att skapa ett repo på Docker Hub som ska hålla min Doc
 
 Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, Nginx, och kopierar in mina filer från **php-app** samt en egen Nginx-konfiguration. En Dockerfile är en fil som beskriver hur min Docker-image ska byggas.
 
+Dockerfile-filen (php-app/Dockerfile) gör följande:
+
+1. Använder officiell PHP 8.2 som grund.
+2. Uppdaterar paketlistan och installerar Nginx webbserver, sen rensar cache för att hålla image liten.
+3. Tar bort standardfiler i Nginx webbroot och kopierar in applikationens filer dit.
+4. Byter arbetskatalog till webbroot och kopierar en egen Nginx-konfigurationsfil.
+5. Exponerar port 80 och startar php-fpm i bakgrunden samt Nginx i förgrunden för att hantera webbtrafiken.
+
 ```Dockerfile
 # Använd officiell PHP 8.2 FPM image som bas (PHP med FastCGI Process Manager)
 FROM php:8.2-fpm
@@ -58,6 +66,16 @@ CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
 ```
 
 Jag skapade även en fil **default.conf** där jag konfigurerade Nginx att peka på rätt katalog och hantera PHP-filer.
+filen styr hur webbservern hanterar filer och PHP-kod för att säkerställa att webbplatsen fungerar korrekt och säkert.
+
+default.conf (php-app/default.conf) gör följande:
+
+1. Lyssnar på port 80 för HTTP-förfrågningar.
+2. Anger webbrot och standardfil (`index.php`).
+3. Hanterar förfrågningar och skickar saknade filer till `index.php`.
+4. Serverar statiska filer direkt utan PHP.
+5. Skickar PHP-filer till PHP-FPM för bearbetning.
+
 
 ```default.conf
 server {
@@ -236,6 +254,14 @@ cd ~/nginx-reverse-proxy
 Steg 2: Skapa **docker-compose.yml**
 
 🧱 docker-compose.yml
+
+Docker Compose-filen gör följande:
+
+1. Startar en PHP + Nginx-app med miljövariabler för domän och certifikat.
+2. Startar en Nginx reverse proxy för att hantera trafik och SSL.
+3. Startar en tjänst som automatiskt fixar och förnyar SSL-certifikat.
+4. Delar volymer för certifikat och konfiguration mellan tjänsterna.
+5. Kopplar ihop allt i ett gemensamt Docker-nätverk.
 
 Jag skapade en docker-compose.yml i samma mapp (nginx-reverse-proxy) med följande innehåll som definierade alla tre containrar:
 
