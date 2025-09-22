@@ -22,8 +22,9 @@ GitHub Repo: https://github.com/91maxore-hub/php-app
 | `.github/workflows`      | Mapp | Mapp för GitHub Actions workflows                         |
 | └── `docker-image.yml`   | Fil  | Workflow för att bygga, pusha och deploya Docker-image    |
 
-Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan paketeras i en Docker-image. 
-Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används logobild för webbplatsen. Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
+Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan paketeras i en Docker-image.  
+Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används logobild för webbplatsen.  
+Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
 
 **Steg 2: Paketera som Docker Image och ladda upp till Docker Hub**
 
