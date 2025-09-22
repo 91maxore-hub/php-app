@@ -26,24 +26,24 @@ Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan 
 Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används logobild för webbplatsen.  
 Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
 
-**Steg 2: Paketera som Docker Image och ladda upp till Docker Hub**
+# 🛠️ Steg 2: Paketera som Docker Image och ladda upp till Docker Hub
 
-Efter att projektstrukturen var klar (med index.php, style.css, logo2.png), gick jag vidare till att paketera projektet i en Docker-image och publicera den på Docker Hub.
-Jag började först med att skapa ett repo på Docker Hub som ska hålla min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
+Efter att projektstrukturen var klar (med **index.php**, **style.css**, **logo2.png**), gick jag vidare till att paketera projektet i en Docker-image och publicera den på Docker Hub.
+För att börja med detta måste man först skapa ett repo på Docker Hub som ska hålla min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
 
 ![alt text](image.png)
 
-Steg 3.
+# 🛠️ Steg 3: Skapandet av Dockerfile
 
-Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, Nginx, och kopierar in mina filer från **php-app** samt en egen Nginx-konfiguration. En Dockerfile är en fil som beskriver hur min Docker-image ska byggas.
+Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, nginx, och kopierar in mina filer från **php-app** (projektmapp) samt en egen nginx-konfiguration. Kortfattat: en Dockerfile är en fil som beskriver hur ens Docker-image ska byggas.
 
 Dockerfile-filen (php-app/Dockerfile) gör följande:
 
 1. Använder officiell PHP 8.2 som grund.
-2. Uppdaterar paketlistan och installerar Nginx webbserver, sen rensar cache för att hålla image liten.
-3. Tar bort standardfiler i Nginx webbroot och kopierar in applikationens filer dit.
-4. Byter arbetskatalog till webbroot och kopierar en egen Nginx-konfigurationsfil.
-5. Exponerar port 80 och startar php-fpm i bakgrunden samt Nginx i förgrunden för att hantera webbtrafiken.
+2. Uppdaterar paketlistan och installerar nginx webbserver, sen rensar cache för att hålla image liten.
+3. Tar bort standardfiler i nginx webbroot och kopierar in applikationens filer dit.
+4. Byter arbetskatalog till webbroot och kopierar en egen nginx-konfigurationsfil.
+5. Exponerar port 80 och startar php-fpm i bakgrunden samt nginx i förgrunden för att hantera webbtrafiken.
 
 ```Dockerfile
 # Använd officiell PHP 8.2 FPM image som bas (PHP med FastCGI Process Manager)
@@ -74,8 +74,10 @@ EXPOSE 80
 CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
 ```
 
-Jag skapade även en fil **default.conf** där jag konfigurerade Nginx att peka på rätt katalog och hantera PHP-filer.
-filen styr hur webbservern hanterar filer och PHP-kod för att säkerställa att webbplatsen fungerar korrekt och säkert.
+# 🛠️ Steg 4: Skapandet av nginx-konfiguration (default.conf)
+
+Jag skapade även en fil **default.conf** där jag konfigurerade nginx att peka på rätt katalog och hantera PHP-filer.
+Den styr även hur webbservern hanterar filer och PHP-kod för att säkerställa att webbplatsen fungerar korrekt och säkert.
 
 default.conf (php-app/default.conf) gör följande:
 
@@ -109,16 +111,17 @@ server {
 }
 ```
 
-**Byggandet av Docker Image**
-I terminalen körde jag sedan följande kommando i projektmappen (där mina samtliga filer finns) för att bygga mina projektfiler till en Docker Image och ge den en tagg.
-91maxore = användarnamn
+# 🛠️ Steg 5: Byggandet av Docker Image
+
+I terminalen körde jag sedan följande kommando i projektmappen (där mina samtliga filer finns) för att bygga mina projektfiler till en Docker-image och ge den en tagg.  
+91maxore = användarnamn  
 php-nginx-app = repo på Docker Hub
 
 ```bash
 docker build -t 91maxore/php-nginx-app:latest .
 ```
 
-**Loggade in på Docker Hub**
+# 🛠️ Steg 6: Loggade in på Docker Hub
 
 Logga in på Docker Hub via terminalen:
 ```bash
@@ -128,40 +131,38 @@ docker login
 Och angav mitt användarnamn och lösenord som jag använder till Docker Hub.
 
 
-🚀 **Pusha Docker Image till Docker Hub**
+# 🚀 Steg 7: Pusha Docker-image till Docker Hub
 
 När imagen är byggd och du är inloggad, pusha imagen till Docker Hub med:
 ```bash
 docker push 91maxore/php-nginx-app:latest
 ```
 
-Detta pushar min nyskapade Docker Image till Docker Hub och är redo för användning.
+Detta pushar min nyskapade Docker-image till Docker Hub och är redo för användning.
 Nu ligger den på Docker Hub:
 
 🔗 https://hub.docker.com/repository/docker/91maxore/php-nginx-app/
 
-**Köra containern lokalt**
-För att först testa att containern fungerar som den ska, körde jag den med:
+# Steg 8: Köra containern lokalt
+Innan vi går vidare behöver vi först testa att containern fungerar som den ska, och därmed testar vi den lokalt först.  Så jag började med att köra den med:
 ```bash
 docker run -d -p 8080:80 91maxore/php-nginx-app:latest
 ```
 
-Notera: Att den mappar port 80 inne i containern (där Nginx kör) till port 8080 på din dator.
+**Notera:** Att den mappar port 80 inne i containern (där nginx kör) till port 8080 på min dator.
 
 Sedan kunde jag öppna webappen i webbläsaren via:
 ```bash
 http://localhost:8080
 ```
 
-Där laddades min PHP-webapp utan konstigheter.
+Där laddades min PHP-webapp utan konstigheter. Se bild nedan.
 
 ![alt text](image-1.png)
 
-**Steg 3: Köra i en Container Host**
+# Köra i en Container Host
 
-Efter att jag byggt och laddat upp Docker-imagen till Docker Hub var nästa steg att köra webappen i en container på en containerhost.
-
-Jag testade detta lokalt (som du kan läsa ovan) och det fungerade. Så nästa steg är att få en Azure VM att köra containern, så att appen kan nås därifrån via sitt publika IP hela tiden.
+Efter att jag byggt och laddat upp Docker-imagen till Docker Hub, samt testat dess funktionalitet lokalt på datorn (som du kan läsa ovan) och det fungerade. Så nästa steg är att få en Azure VM att köra containern, så att appen kan nås därifrån via sitt publika IP hela tiden.
 
 **Konfiguration av Container Host**
 
@@ -173,7 +174,11 @@ Jag testade detta lokalt (som du kan läsa ovan) och det fungerade. Så nästa s
 | **Storlek**    | Standard\_B1s (1 vCPU, 1 GiB RAM)  |
 | **Publikt IP** | 4.231.236.186                      |
 
-Steg 1: Logga in på servern via SSH:
+**Port 80** - Används för att ta emot inkommande HTTP-trafik.
+**Port 443** - Används för att ta emot inkommande HTTPS-trafik (krypterad webbtrafik via SSL/TLS).
+**Port 22** - Används för att möjliggöra fjärrinloggning via SSH för administration av servern.
+
+**Steg 1:** Logga in på servern via SSH:
 ```bash
 ssh -i ~/Downloads/php-VM_key.pem azureuser@4.231.236.186
 ```
