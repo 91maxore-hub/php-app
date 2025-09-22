@@ -31,6 +31,8 @@ Jag började först med att skapa ett repo på Docker Hub som ska hålla min Doc
 
 ![alt text](image.png)
 
+Steg 3.
+
 Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, Nginx, och kopierar in mina filer från **php-app** samt en egen Nginx-konfiguration. En Dockerfile är en fil som beskriver hur min Docker-image ska byggas.
 
 Dockerfile-filen (php-app/Dockerfile) gör följande:
