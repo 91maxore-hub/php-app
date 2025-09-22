@@ -1,10 +1,14 @@
 # Distribution av webapp med Docker och Github Actions
 
-# Max Oredson - Azure
+Detta projekt består av en enkel webbapplikation byggd med PHP och Nginx som körs i en Docker-container. Applikationen är ett kontaktformulär för företaget Wavvy AB där användare kan skicka meddelanden till företagets support. Frontend är stilren och responsiv med CSS, och efter inskickat formulär visas ett bekräftelsemeddelande.
+
+Docker-imagen baseras på PHP 8.2 med PHP-FPM och Nginx, och applikationen är konfigurerad för att köra PHP via FastCGI. Applikationen körs tillsammans med en omvänd proxy (nginx-proxy) som hanterar inkommande trafik och vidarebefordrar den till rätt container. SSL-certifikat hanteras automatiskt via Let's Encrypt och en certifikatkompanjon.
+
+Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje push till master-grenen byggs en ny Docker-image, pushas till Docker Hub och deployas via SSH till en server där Docker Compose startar om containrarna med den nya versionen. Miljövariabler för domän och certifikat hanteras säkert via GitHub Secrets.
 
 GitHub Repo: https://github.com/91maxore-hub/php-app
 
-**🛠️ Steg 1 – Skapandet av projektstruktur och grundfiler**
+# 🛠️ Steg 1 – Skapandet av projektstruktur och grundfiler**
 
 | Katalog / Fil            | Typ  | Beskrivning                                               |
 | ------------------------ | ---- | --------------------------------------------------------- |
