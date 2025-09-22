@@ -189,7 +189,7 @@ sudo apt update
 sudo apt install docker.io -y
 ```
 
-**Steg 3: Dra ner din Docker-image från Docker Hub**
+**Steg 3: Dra ner din Docker-image från Docker Hub**  
 På din container host (Azure VM) kör detta kommando för att hämta din image:
 ```bash
 docker pull 91maxore/php-nginx-app:latest
