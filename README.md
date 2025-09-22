@@ -378,7 +378,7 @@ git init && git add . && git commit -m "CI/CD Pipeline - Första commit"
 ```
 
 Steg 3: Bege dig över till ditt Github-konto och skapa nytt repo på GitHub. (jag döpte min till php-app2 enbart för att visa)
-Efter att du skapat ditt repo kommer du bli hänvisad till följande instruktioner som du kan se nedaqn på bilden. Ta **quick setup** länken och följ vidare guiden på mitt nästa steg.
+Efter att du skapat ditt repo kommer du bli hänvisad till följande instruktioner som du kan se nedan på bilden. Ta **quick setup** länken och följ vidare guiden på mitt nästa steg.
 
 ![alt text](image-8.png)
 
