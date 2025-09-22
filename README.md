@@ -10,12 +10,17 @@ GitHub Repo: https://github.com/91maxore-hub/php-app
 
 **🛠️ Steg 1 – Skapandet av projektstruktur och grundfiler**
 
-| Fil / Mapp      | Typ  | Beskrivning                       |
-| --------------- | ---- | --------------------------------- |
-| `php-app/`      | Mapp | Projektets rotmapp                |
-| ├── `index.php` | Fil  | Huvudfil för webbapplikationen    |
-| ├── `style.css` | Fil  | CSS-stilmall för sidans utseende  |
-| └── `logo2.png` | Fil  | Bildfil – logotyp för webbplatsen |
+| Katalog / Fil            | Typ  | Beskrivning                                            |
+| ------------------------ | ---- | ------------------------------------------------------ |
+| `php-app`                | Mapp | Projektets rotmapp                                     |
+| ├── `index.php`          | Fil  | Huvudfil för webbapplikationen                         |
+| ├── `style.css`          | Fil  | CSS-stilmall för sidans utseende                       |
+| ├── `logo2.png`          | Fil  | Bildfil – logotyp för webbplatsen                      |
+| ├── `default.conf`       | Fil  | Nginx-konfiguration för webbserver och PHP-hantering   |
+| ├── `docker-compose.yml` | Fil  | Docker Compose-fil för tjänster                        |
+| └── `Dockerfile`         | Fil  | Dockerfil för att bygga image                          |
+| `.github/workflows`      | Mapp | Mapp för GitHub Actions workflows                      |
+| └── `docker-image.yml`   | Fil  | Workflow för att bygga, pusha och deploya Docker-image |
 
 Syftet med dessa filer var att skapa en minimal men fungerande webbsida som kunde paketeras i en Docker-image. index.php innehåller själva innehållet för sidan, style.css står för designen, och logo2.png används logobild för webbplatsen.
 
