@@ -174,37 +174,39 @@ Efter att jag byggt och laddat upp Docker-imagen till Docker Hub, samt testat de
 | **Storlek**    | Standard\_B1s (1 vCPU, 1 GiB RAM)  |
 | **Publikt IP** | 4.231.236.186                      |
 
-**Port 80** - Används för att ta emot inkommande HTTP-trafik.
-**Port 443** - Används för att ta emot inkommande HTTPS-trafik (krypterad webbtrafik via SSL/TLS).
-**Port 22** - Används för att möjliggöra fjärrinloggning via SSH för administration av servern.
+**Port 80** - Används för att ta emot inkommande HTTP-trafik.  
+**Port 443** - Används för att ta emot inkommande HTTPS-trafik (krypterad webbtrafik via SSL/TLS).  
+**Port 22** - Används för att möjliggöra fjärrinloggning via SSH för administration av servern.  
 
-**Steg 1:** Logga in på servern via SSH:
+**Steg 1: Logga in på servern via SSH:**
 ```bash
 ssh -i ~/Downloads/php-VM_key.pem azureuser@4.231.236.186
 ```
 
-Steg 2: Installera Docker:
+**Steg 2: Installera Docker:**
 ```bash
 sudo apt update
 sudo apt install docker.io -y
 ```
 
-Steg 3: Dra ner din Docker-image från Docker Hub
-På servern, kör detta kommando för att hämta din image:
+**Steg 3: Dra ner din Docker-image från Docker Hub**
+På din container host (Azure VM) kör detta kommando för att hämta din image:
 ```bash
 docker pull 91maxore/php-nginx-app:latest
 ```
 
-Steg 3: Kör containern
-Starta containern och exponera port 80 så att appen blir tillgänglig på serverns port 80:
+**Steg 4: Kör containern**
+Starta containern och exponera port 80 så att appen blir tillgänglig på serverns port 80 genom ange följande:
 ```bash
 docker run -d --name php-nginx-app -p 80:80  91maxore/php-nginx-app:latest
 ```
 
-Notera att jag inte behövde utföra docker login eftersom docker imagen är publik.
+--name gör så att du enkelt kan namnge din container så du enklare kan hålla koll på vilken som är vad
+
+**Notera:** att jag inte behövde utföra docker login eftersom docker-imagen är publik.
 Dessutom kör vi containern på port 80 så att man slipper ange porten efter ip-adressen.
 
-🔄 Steg 4: Kontrollera att containern körs
+# 🔄 Steg 5: Kontrollera att containern körs
 För att se om containern är igång kan du använda:
 
 ```bash
@@ -215,7 +217,9 @@ Du ser då något liknande:
 
 ![alt text](image-3.png)
 
-Nu har jag flera container som körs eftersom jag kör reverse proxy + HTTPS/SSL. Men dit kommer vi senare, men du förstår poängen.
+Nu har jag dock flera container som körs eftersom jag kör reverse proxy + HTTPS/SSL. Men dit kommer vi senare, men du förstår poängen.
+
+**Tips:**
 
 För att stoppa, starta och ta bort containern, kan du utföra följande:
 ```bash
@@ -226,7 +230,7 @@ docker rm php-nginx-app (eller <container-id>)
 
 Du bör se din container **php-nginx-app** (eller det du namngav din container ovan efter --name)
 
-Steg 4: Gå till serverns publika IP-adress i webbläsaren:
+**Steg 6:** Gå till serverns publika IP-adress i webbläsaren:
 ```bash
 http://4.231.236.186
 ```
@@ -235,26 +239,26 @@ http://4.231.236.186
 
 Notera att appen körs nu i en Docker-container på servern och är åtkomlig via serverns publika IP.
 
-**Det är viktigt att notera att port 80 (för HTTP) behöver vara öppen i brandväggen på Azure.**
+**Det är viktigt att notera att port 80 (för HTTP) behöver vara öppen i brandväggen på Azure för att sidan ska kunna nås.**
 **Tänk på att du kan behöva använda sudo om du inte har root-permissions.**
 
-🌐 Steg 4: Använda domännamn istället för IP (wavvy.se via Loopia)
+# 🌐 Använda domännamn istället för IP (wavvy.se via Loopia)
 
-För att göra webappen tillgänglig via ett eget domännamn, valde jag att koppla domänen wavvy.se, som jag köpt via Loopia, till min server istället för att använda en publik IP-adress direkt. Främst eftersom jag inte vill exponera serverns publika IP.
+För att göra webappen tillgänglig via ett eget domännamn, valde jag att koppla domänen wavvy.se, som jag köpt via Loopia, till container hosten istället för att använda en publik IP-adress direkt. Främst eftersom jag inte vill exponera serverns publika IP.
 
 Jag loggade in på Loopia och gick till DNS-inställningarna för domänen. Där uppdaterade jag A-posten så att wavvy.se pekar på min servers publika IP-adress. Efter en stund kunde appen nås via http://wavvy.se
 
 ![alt text](image-4.png)
 
-🔁 Steg 5: Reverse Proxy och HTTPS med Docker + Let's Encrypt
+# 🔁 Reverse Proxy och HTTPS med Docker + Let's Encrypt
 
 För att säkra min webbapp och göra den tillgänglig via HTTPS, satte jag upp en reverse proxy med automatiskt SSL-certifikat från Let's Encrypt.
 
-**Jag använde tre containrar:**
+**Jag använder tre containrar:**
 
-1. Min php-nginx-app (från Docker Hub)
-2. nginx-proxy – reverse proxy som lyssnar på trafik och omdirigerar till rätt container
-3. letsencrypt-nginx-proxy-companion – genererar och hanterar SSL-certifikat automatiskt
+1. Min **php-nginx-app** (från Docker Hub)
+2. **nginx-proxy** – reverse proxy som lyssnar på trafik och omdirigerar till rätt container
+3. **letsencrypt-nginx-proxy-companion** – genererar och hanterar SSL-certifikat automatiskt
 
 **Steg 1: Skapa en mapp för projektet**
 
@@ -265,7 +269,7 @@ mkdir -p ~/nginx-reverse-proxy
 cd ~/nginx-reverse-proxy
 ```
 
-Steg 2: Skapa **docker-compose.yml**
+**Steg 2:** Skapa **docker-compose.yml**
 
 🧱 docker-compose.yml
 
@@ -330,7 +334,8 @@ networks:
     driver: bridge
 ```
 
-Steg 4: Starta tjänsterna
+**Steg 4:** Starta tjänsterna
+
 Kör följande för att dra ner och starta alla containrar i bakgrunden:
 ```bash
 docker-compose pull
@@ -342,7 +347,7 @@ docker-compose up -d
 ```
 ![alt text](image-7.png)
 
-Steg 5: Kontrollera att allt fungerar
+**Steg 5:** Kontrollera att allt fungerar
 
 Detta kommer sedan CI/CD lösa automatiskt själv men vi testar för att se att allt fungerar.
 
