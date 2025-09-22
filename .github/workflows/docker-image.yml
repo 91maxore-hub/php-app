@@ -35,11 +35,5 @@ jobs:
           script: |
             cd /home/azureuser/nginx-reverse-proxy
 
-            # Exportera miljövariabler så att docker-compose kan använda dem
-            export VIRTUAL_HOST=${{ secrets.VIRTUAL_HOST }}
-            export LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }}
-            export LETSENCRYPT_EMAIL=${{ secrets.LETSENCRYPT_EMAIL }}
-
-            # Uppdatera container och starta om med nya variabler
-            sudo docker-compose pull
-            sudo docker-compose up -d
+            VIRTUAL_HOST=${{ secrets.VIRTUAL_HOST }} LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }} LETSENCRYPT_EMAIL=${{ secrets.LETSENCRYPT_EMAIL }} docker-compose pull && \
+            VIRTUAL_HOST=${{ secrets.VIRTUAL_HOST }} LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }} LETSENCRYPT_EMAIL=${{ secrets.LETSENCRYPT_EMAIL }} docker-compose up -d
