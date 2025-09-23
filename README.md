@@ -309,7 +309,7 @@ cd ~/nginx-reverse-proxy
 4. Delar volymer för certifikat och konfiguration mellan tjänsterna.
 5. Kopplar ihop allt i ett gemensamt Docker-nätverk.  
 
-Jag placerade docker-compose.yml i samma mapp som vi skapade i förgående steg (**nginx-reverse-proxy**) med följande innehåll som definierade alla tre containrar:
+Jag placerade **docker-compose.yml** i samma mapp som vi skapade i förgående steg (**nginx-reverse-proxy**) med följande innehåll som definierade alla tre containrar:
 
 🧱 docker-compose.yml
 
