@@ -48,6 +48,8 @@ Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, nginx, och 
 4. Byter arbetskatalog till webbroot och kopierar en egen nginx-konfigurationsfil.
 5. Exponerar port 80 och startar php-fpm i bakgrunden samt nginx i förgrunden för att hantera webbtrafiken.
 
+## 📄 Dockerfile
+
 ```Dockerfile
 # Använd officiell PHP 8.2 FPM image som bas (PHP med FastCGI Process Manager)
 FROM php:8.2-fpm
@@ -91,6 +93,7 @@ Den styr även hur webbservern hanterar filer och PHP-kod för att säkerställa
 5. Serverar statiska filer direkt utan PHP.
 6. Skickar PHP-filer till PHP-FPM för bearbetning.
 
+## 📄 default.conf
 
 ```default.conf
 server {
@@ -311,7 +314,7 @@ cd ~/nginx-reverse-proxy
 
 Jag placerade **docker-compose.yml** i samma mapp som vi skapade i förgående steg (**nginx-reverse-proxy**) med följande innehåll som definierade alla tre containrar:
 
-🧱 docker-compose.yml
+## 📄 docker-compose.yml
 
 ```yaml
 version: '3'
@@ -453,7 +456,7 @@ mkdir -p .github/workflows
 7. Uppdaterar och startar containrarna med Docker Compose  
 (Kör **docker-compose pull** och **docker-compose up -d** för att rulla ut den nya imagen)
 
-🧱 docker-image.yml
+## 🧱 docker-image.yml
 
 ```yaml
 name: Bygg och pusha Docker-image
