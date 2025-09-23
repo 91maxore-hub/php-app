@@ -603,7 +603,7 @@ På så sätt är delar av infrastrukturen – främst allt som rör Docker - so
    Applikationen körs i **Docker-containrar**, vilket gör att varje tjänst är isolerad från resten av systemet.
 
 6. **Säker kommunikation mellan containrar via Docker-nätverk**  
-   Alla tjänster är kopplade till samma isolerade Docker-nätverk (webnet), vilket gör att intern trafik sker privat och inte exponeras utanför hosten.
+   Alla tjänster är kopplade till samma isolerade Docker-nätverk (webnet), vilket gör att intern trafik sker privat och inte exponeras utanför container-hosten.
 
 7. **Endast nödvändiga portar**  
    För att minska hoten utifrån är endast portarna 22 (SSH), 80 (HTTP) och 443 (HTTPS) öppna på container-hosten. Alla andra portar är stängda enligt bästa praxis, vilket begränsar exponeringen av tjänster och förbättrar säkerheten.
