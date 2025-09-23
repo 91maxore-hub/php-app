@@ -128,7 +128,7 @@ server {
 
 # Byggandet av Docker Image och ladda upp till Docker Hub
 
-## Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.
+**Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.**
 
 **Steg 1: Byggandet av Docker Image**
 
