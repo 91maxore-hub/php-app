@@ -512,15 +512,21 @@ Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en C
 
 
 **Steg 7: Verifiering av CI/CD funktionalitet**  
-Bege dig över till https://github.com/91maxore-hub/php-app och granska resultaten. (byt ut mot din github-repo)
+Gå till ditt GitHub-repo, till exempel:  
+https://github.com/91maxore-hub/php-app och granska resultaten. (byt ut mot ditt repo)
 
-Ifall CI/CD fungerar korrekt borde du se grön-markerade resultat som nedan:
+Navigera sedan till fliken **Actions**.
+
+Om CI/CD är korrekt konfigurerat bör du se att de senaste körningarna är markerade med en **grön bock** samt en **status** som visar **Success**.
 
 ![alt text](image-10.png)
 
-Och en status som är markerad som **Success**
-
 ![alt text](image-11.png)
+
+Exempel på ett lyckat arbetsflöde:
+
+**build-and-push — Success**
+
 
 ✅ Resultat
 
