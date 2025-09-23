@@ -235,7 +235,7 @@ docker run -d --name php-nginx-app -p 80:80  91maxore/php-nginx-app:latest
 
 **--name** gör så att du enkelt kan namnge din container så du enklare kan hålla koll på vilken container som är vad
 
-**Notera:** att jag inte behövde utföra docker login eftersom docker-imagen är publik.
+**Notera:** Att jag inte behövde utföra docker login eftersom docker-imagen är publik.
 Dessutom kör vi containern på port 80 så att man slipper ange porten efter ip-adressen. (ex. http://4.231.236.186)
 
 **Steg 5: Kontrollera att containern körs**  
