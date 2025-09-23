@@ -35,9 +35,10 @@ För att börja med detta måste man först skapa ett repo på Docker Hub som sk
 
 # 🛠️ Steg 3: Skapandet av Dockerfile
 
-Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, nginx, och kopierar in mina applikations-filer från **php-app** (projektmapp) samt en egen nginx-konfiguration. Kortfattat: en Dockerfile är en fil som beskriver hur ens Docker-image ska byggas.
+Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, nginx, och kopierar in mina applikations-filer från **php-app** (projektmappen) samt en egen nginx-konfiguration.  
+**Kortfattat:** en Dockerfile är en fil som beskriver hur ens Docker-image ska byggas.
 
-Dockerfile (php-app/Dockerfile) gör följande:
+**Dockerfile** (php-app/Dockerfile) gör följande:
 
 1. Använder officiell PHP 8.2 som grund.
 2. Uppdaterar paketlistan och installerar nginx webbserver, sen rensar cache för att hålla image liten.
@@ -125,11 +126,11 @@ server {
 
 # 🛠️ Steg 5: Byggandet av Docker Image och ladda upp till Docker Hub
 
-**Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.**
+## Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.**
 
-I terminalen körde jag följande kommando i projektmappen (där mina samtliga filer finns) för att bygga mina applikations-filer till en Docker-image och ge den en tagg.  
-91maxore = användarnamn  
-php-nginx-app = repo på Docker Hub
+Jag använde terminalen och angav följande kommando i projektmappen (där appens samtliga filer finns) för att bygga mina applikations-filer till en Docker-image och ge den en tagg.  
+**91maxore** = användarnamn  
+**php-nginx-app** = repo på Docker Hub
 
 ```bash
 docker build -t 91maxore/php-nginx-app:latest .
@@ -152,7 +153,7 @@ När imagen är byggd och du är inloggad, pusha imagen till Docker Hub med:
 docker push 91maxore/php-nginx-app:latest
 ```
 
-Detta pushar min nyskapade Docker-image till Docker Hub och är redo för användning.
+Detta pushar min nyskapade Docker-image till Docker Hub och är redo för användning.  
 Nu ligger den på Docker Hub:
 
 🔗 https://hub.docker.com/repository/docker/91maxore/php-nginx-app/
@@ -172,7 +173,7 @@ För att se om containern är igång kan du använda:
 docker ps
 ```
 
-Detta borde returneras med din container, ex. 91maxore/php-nginx-app i mitt fall.
+Detta borde returneras med din container, ex. **91maxore/php-nginx-app** i mitt fall.
 
 Sedan kunde jag öppna webappen i webbläsaren via:
 ```bash
@@ -218,13 +219,13 @@ På din container host (Azure VM) kör detta kommando för att hämta din image:
 docker pull 91maxore/php-nginx-app:latest
 ```
 
-**Steg 4: Kör containern**
-Starta containern och exponera port 80 så att appen blir tillgänglig på serverns port 80 genom ange följande:
+**Steg 4: Kör containern**  
+Starta containern och exponera port 80 så att appen blir tillgänglig på serverns port 80 genom att ange följande:
 ```bash
 docker run -d --name php-nginx-app -p 80:80  91maxore/php-nginx-app:latest
 ```
 
-**--name** gör så att du enkelt kan namnge din container så du enklare kan hålla koll på vilken som är vad
+**--name** gör så att du enkelt kan namnge din container så du enklare kan hålla koll på vilken container som är vad
 
 **Notera:** att jag inte behövde utföra docker login eftersom docker-imagen är publik.
 Dessutom kör vi containern på port 80 så att man slipper ange porten efter ip-adressen. (ex. http://4.231.236.186)
@@ -251,23 +252,24 @@ docker start php-nginx-app (eller container-id)
 docker rm php-nginx-app (eller container-id)
 ```
 
-Du bör se din container **php-nginx-app** (eller det du namngav din container ovan efter --name)
+Du bör se din container **php-nginx-app** (eller det du namngav din container ovan efter **--name**)
 
-**Steg 6:** Gå till serverns publika IP-adress i webbläsaren:
+**Steg 6: Testa appens funktionalitet**  
+Gå till serverns publika IP-adress i webbläsaren:
 ```bash
 http://4.231.236.186
 ```
 
 ![alt text](image-2.png)
 
-Notera att appen körs nu i en Docker-container på min container-host och är åtkomlig via dess publika IP.
+**Notera:** att appen körs nu i en Docker-container på min container-host och är åtkomlig via dess publika IP.
 
 **Det är viktigt att notera att port 80 (för HTTP) och/eller port 443 (för HTTPS) behöver vara öppen i brandväggen på Azure för att sidan ska kunna nås.**
 **Tänk på att du kan behöva använda sudo om du inte har root-permissions.**
 
-# 🌐 Domännamn istället för IP (wavvy.se via Loopia)
+# 🌐 Domännamn istället för publikt IP (wavvy.se via Loopia)
 
-För att göra webappen tillgänglig via ett eget domännamn, valde jag att koppla min domänen wavvy.se, som jag köpt via Loopia, till container hosten istället för att använda en publik IP-adress direkt. Främst eftersom jag inte vill exponera serverns publika IP.
+För att göra webappen tillgänglig via ett eget domännamn, valde jag att koppla min domän **wavvy.se** som jag köpt via Loopia, till container-hosten istället för att använda dess publik IP-adress direkt. Främst eftersom jag inte vill exponera serverns publika IP.
 
 Jag loggade in på Loopia och gick till DNS-inställningarna för domänen. Där uppdaterade jag A-posten så att wavvy.se pekar på min servers publika IP-adress. Efter en stund kunde appen nås via http://wavvy.se
 
@@ -283,7 +285,7 @@ För att säkra min webbapp och göra den tillgänglig via HTTPS, satte jag upp 
 2. **nginx-proxy** – reverse proxy som lyssnar på trafik och omdirigerar till rätt container
 3. **letsencrypt-nginx-proxy-companion** – genererar och hanterar SSL-certifikat automatiskt
 
-**Steg 1: Skapa en mapp för projektet**
+**Steg 1: Skapa en mapp för projektet på container-hosten**
 
 Jag började med att skapa en mapp som heter **nginx-reverse-proxy** för appen som kommer ligga placerad på container hosten (Azure VM).  Den kommer att användas för att lagra **docker-compose.yml** och tillhörande filer till HTTPS (Let's Encrypt) som certs etc.
 
@@ -304,7 +306,7 @@ Docker Compose-filen gör följande:
 4. Delar volymer för certifikat och konfiguration mellan tjänsterna.
 5. Kopplar ihop allt i ett gemensamt Docker-nätverk.
 
-Jag placerade docker-compose.yml i samma mapp som vi skapade i förgående steg (nginx-reverse-proxy) med följande innehåll som definierade alla tre containrar:
+Jag placerade docker-compose.yml i samma mapp som vi skapade i förgående steg (**nginx-reverse-proxy**) med följande innehåll som definierade alla tre containrar:
 
 ```yaml
 version: '3'
@@ -359,7 +361,7 @@ networks:
 
 **Steg 4: Starta containers**
 
-Kör följande för att dra ner och starta alla containrar i bakgrunden:
+Kör följande för att dra ner och starta alla containrar:
 ```bash
 docker-compose pull
 ```
@@ -383,7 +385,7 @@ Vi kan därmed granska att appen fungerar som den ska med HTTPS/SSL. Du kan äve
 
 Allt detta kommer sedan CI/CD via GitHub Actions lösa automatiskt via sin deployment-image, men vi testkör först dess funktionalitet för att se att allt fungerar som det ska.
 
-# 🔐 Automatisk HTTPS med miljövariabler
+# 🔒 Automatisk HTTPS med miljövariabler
 
 För att konfigurera SSL och domännamnet använde jag tre miljövariabler som app-containern läser in: (under **environment**-delen i docker-compose.yml)
 
@@ -394,7 +396,7 @@ För att konfigurera SSL och domännamnet använde jag tre miljövariabler som a
 Dessa värden sattes i en .env-fil, som senare under CI/CD kommer att genereras automatiskt av GitHub Actions under deployment.  
 Filen placeras i **nginx-reverse-proxy**-mappen som allt som rör docker/reverse proxy-konfiguration på container-hosten.
 
-# 🚀 Automatiserad deploy med GitHub Actions
+# 🚀 Automatiserad deployment med GitHub Actions
 
 För att förenkla hela automatiseringsprocessen byggde och pushade jag min Docker-image automatiskt via GitHub Actions, och deployade den sedan direkt till servern via SSH. Allt detta kommer ske via min docker-image.yml
 
@@ -418,14 +420,14 @@ Efter att du skapat ditt repo kommer du bli hänvisad till följande instruktion
 
 **Steg 4: Anslut lokalt repo till GitHub och gör första pushen**
 ```bash
-git remote add origin git@github.com:91maxore-hub/php-app.git (använd quick-setup länken)
+git remote add origin git@github.com:91maxore-hub/php-app.git (ersätt med quick-setup länken)
 git branch -M master (eller main)
 git push -u origin master (eller main)
 ```
 
 Jag har nu initierat GitHub-repot och det är redo att användas för CI/CD-deployments.
 
-**Steg 5. Skapa GitHub Actions workflow**
+**Steg 5. Skapa GitHub Actions workflow**  
 Nästa steg är att skapa en **docker-image.yml** för upprätthålla en CI/CD.  
 Så skapa mappen och workflow-filen enligt strukturen som nedan:
 
@@ -433,7 +435,7 @@ Så skapa mappen och workflow-filen enligt strukturen som nedan:
 mkdir -p .github/workflows
 ```
 
-Workflow-filen (.github/workflows/docker-image.yml) gör följande:
+**Workflow-filen** (.github/workflows/docker-image.yml) gör följande:
 
 1. Klona repot från GitHub
 2. Loggar in på Docker Hub
@@ -441,7 +443,8 @@ Workflow-filen (.github/workflows/docker-image.yml) gör följande:
 4. Pushar den till Docker Hub
 5. Ansluter till servern via SSH
 6. Skapar .env-fil på container-hosten med hjälp av GitHub Secrets
-7. Uppdaterar och startar containrarna med Docker Compose (Kör docker-compose pull och docker-compose up -d för att rulla ut den nya imagen)
+7. Uppdaterar och startar containrarna med Docker Compose  
+(Kör docker-compose pull och docker-compose up -d för att rulla ut den nya imagen)
 
 🧱 docker-image.yml
 
@@ -493,7 +496,18 @@ jobs:
             sudo docker-compose up -d
 ```
 
-Enligt bästa praxis ska inga känsliga värden, såsom IP-adresser, domännamn, SSH-nycklar eller e-postadresser, hårdkodas i koden. Istället lagras dessa konfidentiella uppgifter säkert som GitHub Secrets i repot för att skydda dem från obehörig åtkomst och för att underlätta säker hantering.
+# 🔒 Så här lägger du till en GitHub Secret
+
+1. Öppna ditt repo på GitHub (ex. https://github.com/91maxore-hub/php-app)
+2. Navigera till fliken **Settings**
+3. Navigera till **Secrets and variables → Actions**
+4. Klicka på **"New repository secret"**
+5. Fyll i:
+   * **Name** – t.ex. `SERVER_HOST`
+   * **Secret** – `4.231.236.186`
+6. Spara med **"Add secret"**
+
+Enligt bästa praxis ska inga känsliga värden, såsom IP-adresser, domännamn, SSH-nycklar eller e-postadresser etc. hårdkodas i koden. Istället lagras desssa uppgifter säkert som GitHub Secrets i repot för att skydda dem från obehörig åtkomst och för att underlätta säker hantering.
 
 ![alt text](image-5.png)
 
