@@ -82,27 +82,39 @@ Den styr även hur webbservern hanterar filer och PHP-kod för att säkerställa
 **default.conf** (php-app/default.conf) gör följande:
 
 1. Lyssnar på port 80 för HTTP-förfrågningar.
-2. Anger webbrot och standardfil (`index.php`).
-3. Hanterar förfrågningar och skickar saknade filer till `index.php`.
-4. Serverar statiska filer direkt utan PHP.
-5. Skickar PHP-filer till PHP-FPM för bearbetning.
+2. Redirectar automatiskt HTTP-förfrågningar till HTTPS.
+3. Anger webbrot och standardfil (`index.php`).
+4. Hanterar förfrågningar och skickar saknade filer till `index.php`.
+5. Serverar statiska filer direkt utan PHP.
+6. Skickar PHP-filer till PHP-FPM för bearbetning.
 
 
 ```default.conf
 server {
     listen 80;
     server_name localhost;
-    root /var/www/html;
 
-    index index.php index.html index.htm;
+    # Om förfrågan inte kommer via HTTPS enligt reverse proxy, gör redirect
+    if ($http_x_forwarded_proto != "https") {
+        return 301 https://$host$request_uri;
+    }
+
+    root /var/www/html;
+    index index.php index.html;
 
     location / {
-        try_files $uri $uri/ =404;
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~* \.(css|js|jpg|jpeg|png|gif|ico|svg)$ {
+        try_files $uri =404;
     }
 
     location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
+        include fastcgi_params;
         fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 
     location ~ /\.ht {
@@ -541,3 +553,11 @@ Allt detta sker helt automatiskt – både deployment och certifikatförnyelse.
 ✅ Laddar upp på Docker Hub  
 ✅ Körs i en Container Host  
 ✅ Använd Github Actions för att automatisera procesen  
+
+# Användningen av Infrastructure as Code (IaC)
+
+Jag använder Infrastructure as Code (IaC) genom att definiera applikationens infrastruktur med kod, främst med hjälp av Docker. Detta gör att applikationen kan köras likadant oavsett miljö.
+
+Jag använder också GitHub Actions för att automatisera hela deployment-processen. När jag pushar till master-branchen byggs en Docker‑image automatiskt och deployas till min server via SSH. Det lagras inga hårdkodade värden i min kod som domännamn och SSH-nycklar, utan alla värden hanteras säkert med GitHub Secrets.
+
+På så sätt är delar av infrastrukturen – främst allt som rör Docker - som containrar, webbserver och certifikat – definierade och hanterade genom kod. Detta gör det enklare att uppdatera miljön utan att göra allt manuellt.
