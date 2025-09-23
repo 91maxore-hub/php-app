@@ -35,7 +35,7 @@ Dessutom behövs en **Dockerfile** och en **default.conf** som jag kommer gå ig
 
 ![alt text](image.png)
 
-Följ stegen nedan för att skapa ett **Docker Hub-repository**
+## Följ stegen nedan för att skapa ett **Docker Hub-repository**
 
 **Steg 1: Logga in på Docker Hub:**
 
