@@ -145,7 +145,7 @@ Nu ligger den på Docker Hub:
 
 🔗 https://hub.docker.com/repository/docker/91maxore/php-nginx-app/
 
-**Steg 8: Testa containern lokalt**
+**Steg 8: Testa containern lokalt**  
 Innan vi går vidare behöver vi först testa att containern fungerar som den ska, och därmed testar vi den lokalt först.  Så jag började med att testköra den med:
 ```bash
 docker run -d -p 8080:80 91maxore/php-nginx-app:latest
