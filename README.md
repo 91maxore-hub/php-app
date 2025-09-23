@@ -528,10 +528,16 @@ Dessutom en **status** som visar **Success**.  Exempel på ett lyckat arbetsflö
 ![alt text](image-11.png)
 
 
-✅ Resultat
+# ✅ Resultat
 
 Efter att allt var uppsatt och CI/CD-deployment gick igenom kunde jag gå till:
 🔗 https://wavvy.se
 
 Min PHP-webapp laddas med giltigt SSL-certifikat, automatisk HTTPS och reverse proxy som hanterar trafiken smidigt.
 Allt detta sker helt automatiskt – både deployment och certifikatförnyelse.
+
+**Om man tittar på kravspecifikationen för uppgiften så är samtliga steg uppfyllda:**
+Skapa en enkel webapp som du paketerar som en Docker-image ✅
+Laddar upp på Docker Hub ✅
+Körs i en Container Host ✅
+Använd Github Actions för att automatisera procesen ✅
