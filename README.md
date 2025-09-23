@@ -131,6 +131,7 @@ server {
 **Steg 1: Byggandet av Docker Image**
 
 Jag använde terminalen och angav följande kommando i projektmappen (där appens samtliga filer finns) för att bygga mina applikations-filer till en Docker-image och ge den en tagg.  
+
 **91maxore** = användarnamn  
 **php-nginx-app** = repo på Docker Hub
 
@@ -160,7 +161,7 @@ Nu ligger den på Docker Hub:
 
 🔗 https://hub.docker.com/repository/docker/91maxore/php-nginx-app/
 
-**Steg 4: Testa containern lokalt**
+**Steg 4: Testa containern lokalt**  
 Innan vi går vidare behöver vi först testa att containern fungerar som den ska, och därmed testar vi den lokalt först.  Så jag började med att testköra den med:
 ```bash
 docker run -d -p 8080:80 91maxore/php-nginx-app:latest
@@ -168,7 +169,7 @@ docker run -d -p 8080:80 91maxore/php-nginx-app:latest
 
 **Notera:** Att den mappar port 80 inne i containern (där nginx kör) till port 8080 lokalt på min dator.
 
-**Steg 5: Kontrollera att containern körs**
+**Steg 5: Kontrollera att containern körs**  
 För att se om containern är igång kan du använda:
 
 ```bash
