@@ -562,7 +562,7 @@ Jag använder också GitHub Actions för att automatisera hela deployment-proces
 
 På så sätt är delar av infrastrukturen – främst allt som rör Docker - som containrar, webbserver och certifikat – definierade och hanterade genom kod. Detta gör det enklare att uppdatera miljön utan att göra allt manuellt.
 
-# 🔐 Användning av säkerhet
+# 🔒 Användning av säkerhet
 
 1. **Inga hårdkodade värden i koden**
    Alla känsliga uppgifter (som Docker Hub-inloggning och SSH-nycklar) lagras säkert som **GitHub Secrets**, vilket gör att de aldrig syns i koden.
