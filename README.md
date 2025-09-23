@@ -496,7 +496,7 @@ Enligt bästa praxis ska inga känsliga värden, såsom IP-adresser, domännamn,
 | `LETSENCRYPT_HOST`   | **Domän för SSL-certifikat (Let's Encrypt)** – `wavvy.se`                              |
 | `LETSENCRYPT_EMAIL`  | **E-postadress för certifikatregistrering och förnyelse** – `91maxore@gafe.molndal.se` |
 
-**Steg 5: Lägg till workflow och pusha**
+**Steg 5: Lägg till workflow och pusha**  
 För att kontrollera att workflow-filen och CI/CD-deploymen­t fungerar korrekt, pusha ändringarna i ett steg:
 ```bash
 git add .github/workflows/docker-image.yml && git commit -m "Lägg till GitHub Actions workflow för CI/CD" && git push origin master
@@ -511,7 +511,7 @@ git add . && git commit -m "CI/CD Pipeline" && git push origin master
 Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en CI/CD-automatiserings deployment så att Docker-imagen alltid håller sig uppdaterad, och därav container-hosten som hostar appen med.
 
 
-**Steg 6: Verifiering av CI/CD funktionalitet**
+**Steg 7: Verifiering av CI/CD funktionalitet**  
 Bege dig över till https://github.com/91maxore-hub/php-app och granska resultaten. (byt ut mot din github-repo)
 
 Ifall CI/CD fungerar korrekt borde du se grön-markerade resultat som nedan:
