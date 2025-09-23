@@ -270,7 +270,7 @@ http://4.231.236.186
 
 ![alt text](image-2.png)
 
-**Notera:** att appen körs nu i en Docker-container på min container-host och är åtkomlig via dess publika IP.
+**Notera:** Att appen körs nu i en Docker-container på min container-host och är åtkomlig via dess publika IP.
 
 **Det är viktigt att notera att port 80 (för HTTP) och/eller port 443 (för HTTPS) behöver vara öppen i brandväggen på Azure för att sidan ska kunna nås.**
 **Tänk på att du kan behöva använda sudo om du inte har root-permissions.**
