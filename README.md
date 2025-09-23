@@ -521,11 +521,11 @@ Om CI/CD är korrekt konfigurerat bör du se att de senaste körningarna är mar
 
 ![alt text](image-10.png)
 
-![alt text](image-11.png)
-
 Exempel på ett lyckat arbetsflöde:
 
 **build-and-push — Success**
+
+![alt text](image-11.png)
 
 
 ✅ Resultat
