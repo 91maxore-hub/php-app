@@ -299,7 +299,7 @@ mkdir -p ~/nginx-reverse-proxy
 cd ~/nginx-reverse-proxy
 ```
 
-**Steg 2:** Skapa **docker-compose.yml**
+**Steg 2: Skapa docker-compose.yml**
 
 **Docker Compose-filen** (php-app/docker-compose.yml) gör följande:
 
