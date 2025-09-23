@@ -292,7 +292,7 @@ För att säkra min webbapp och göra den tillgänglig via HTTPS, satte jag upp 
 
 **Steg 1: Skapa en mapp för projektet på container-hosten**
 
-Jag började med att skapa en mapp som heter **nginx-reverse-proxy** för appen som kommer ligga placerad på container hosten (Azure VM).  Den kommer att användas för att lagra **docker-compose.yml** och tillhörande filer till HTTPS (Let's Encrypt) som certs etc.
+Jag började med att skapa en mapp som heter **nginx-reverse-proxy** för appen som kommer ligga placerad på container-hosten (Azure VM).  Den kommer att användas för att lagra **docker-compose.yml** och tillhörande filer till HTTPS (Let's Encrypt) som certs etc.
 
 ```bash
 mkdir -p ~/nginx-reverse-proxy
