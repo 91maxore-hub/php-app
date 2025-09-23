@@ -35,6 +35,33 @@ Dessutom behövs en **Dockerfile** och en **default.conf** som jag kommer gå ig
 
 ![alt text](image.png)
 
+# Skapandet av Docker Hub-token
+
+Följ stegen nedan för att skapa en **Docker Hub Personal Access Token** som kan senare användas för autentisering i CI/CD-pipelines
+
+1. **Navigera till Account Settings:**
+
+   Klicka på ditt profilnamn uppe till höger → välj **Account Settings**.
+
+   ![alt text](image-13.png)
+
+2. **Gå till Personal access tokens:**
+
+   I inställningsmenyn, klicka på **"Personal Access Tokens"**.
+
+   ![alt text](image-14.png)
+
+3. **Skapa en ny token:**
+
+   - Klicka på **"Generate New Token"**
+   - Ge token ett beskrivande namn, t.ex. `Docker Hub-token`
+   - **Access permissions:** Välj **Read & Write** för att möjliggöra både nedladdning (pull) och uppladdning (push) av images
+   - Klicka på **"Generate"**
+
+4. **Kopiera token direkt:**
+
+   Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare använda för CI/CD-deployment för att autentisera mot Docker Hub.
+
 # Skapandet av Dockerfile
 
 Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, nginx, och kopierar in mina applikations-filer från **php-app** (projektmappen) samt en egen nginx-konfiguration.  
