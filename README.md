@@ -405,7 +405,7 @@ Filen placeras i **nginx-reverse-proxy**-mappen som allt som rör docker/reverse
 
 # 🚀 Automatiserad deployment med GitHub Actions
 
-För att förenkla hela automatiseringsprocessen byggde och pushade jag min Docker-image automatiskt via GitHub Actions, och deployade den sedan direkt till servern via SSH. Allt detta kommer ske via min docker-image.yml
+För att förenkla hela automatiseringsprocessen byggde och pushade jag min Docker-image automatiskt via GitHub Actions, och deployade den sedan direkt till servern via SSH. Allt detta kommer ske via min **docker-image.yml**
 
 **Steg 1. Initiera Git-repo**  
 Öppna terminalen och bege dig till projektmappen där appens filer ligger på din lokala dator ex.
