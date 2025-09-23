@@ -537,7 +537,7 @@ Min PHP-webapp laddas med giltigt SSL-certifikat, automatisk HTTPS och reverse p
 Allt detta sker helt automatiskt – både deployment och certifikatförnyelse.
 
 **Om man tittar på kravspecifikationen för uppgiften så är samtliga steg uppfyllda:**  
-Skapa en enkel webapp som du paketerar som en Docker-image ✅  
-Laddar upp på Docker Hub ✅  
-Körs i en Container Host ✅  
-Använd Github Actions för att automatisera procesen ✅  
+✅ Skapa en enkel webapp som du paketerar som en Docker-image  
+✅ Laddar upp på Docker Hub  
+✅ Körs i en Container Host  
+✅ Använd Github Actions för att automatisera procesen  
