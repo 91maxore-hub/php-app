@@ -444,7 +444,7 @@ mkdir -p .github/workflows
 5. Ansluter till servern via SSH
 6. Skapar .env-fil på container-hosten med hjälp av GitHub Secrets
 7. Uppdaterar och startar containrarna med Docker Compose  
-(Kör docker-compose pull och docker-compose up -d för att rulla ut den nya imagen)
+(Kör **docker-compose pull** och **docker-compose up -d** för att rulla ut den nya imagen)
 
 🧱 docker-image.yml
 
@@ -508,6 +508,8 @@ jobs:
 6. Spara med **"Add secret"**
 
 Enligt bästa praxis ska inga känsliga värden, såsom IP-adresser, domännamn, SSH-nycklar eller e-postadresser etc. hårdkodas i koden. Istället lagras desssa uppgifter säkert som GitHub Secrets i repot för att skydda dem från obehörig åtkomst och för att underlätta säker hantering.
+
+# 🔒 GitHub Secrets-konfigurationer
 
 ![alt text](image-5.png)
 
