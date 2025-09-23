@@ -546,12 +546,12 @@ För att sedan varje gång pusha ändringar som du gör i filer ange följande k
 git add . && git commit -m "CI/CD Pipeline" && git push origin master
 ```
 
-Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en CI/CD-automatiserings deployment så att Docker-imagen alltid håller sig uppdaterad, och därav samma med container-hosten som hostar appen med.
+Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en CI/CD-automatiserings deployment så att Docker-imagen alltid håller sig uppdaterad, och därav samma med container-hosten som hostar appen.
 
 
 **Steg 7: Verifiering av CI/CD funktionalitet**  
 Gå till ditt GitHub-repo, till exempel:  
-https://github.com/91maxore-hub/php-app och granska resultaten. (byt ut mot ditt repo)
+https://github.com/91maxore-hub/php-app och granska resultatet. (byt ut mot ditt repo)
 
 Navigera sedan till fliken **Actions**.
 
