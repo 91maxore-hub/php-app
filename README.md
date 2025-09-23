@@ -37,30 +37,30 @@ Dessutom behövs en **Dockerfile** och en **default.conf** som jag kommer gå ig
 
 # Skapandet av Docker Hub-token
 
-Följ stegen nedan för att skapa en **Docker Hub Personal Access Token** som kan senare användas för autentisering i CI/CD-pipelines
+Följ stegen nedan för att skapa en **Docker Hub-token** som senare kommer användas för autentisering i CI/CD-deployment.
 
-1. **Navigera till Account Settings:**
+**Steg 1: Navigera till Account Settings:**
 
-   Klicka på ditt profilnamn uppe till höger → välj **Account Settings**.
+Klicka på ditt profilnamn uppe till höger → välj **Account Settings**.
 
-   ![alt text](image-13.png)
+![alt text](image-13.png)
 
-2. **Gå till Personal access tokens:**
+**Steg 2: Gå till Personal access tokens:**
 
-   I inställningsmenyn, klicka på **"Personal Access Tokens"**.
+I inställningsmenyn, klicka på **"Personal Access Tokens"**.
 
-   ![alt text](image-14.png)
+![alt text](image-14.png)
 
-3. **Skapa en ny token:**
+**Steg 3: Skapa en ny token:**
 
-   - Klicka på **"Generate New Token"**
-   - Ge token ett beskrivande namn, t.ex. `Docker Hub-token`
-   - **Access permissions:** Välj **Read & Write** för att möjliggöra både nedladdning (pull) och uppladdning (push) av images
-   - Klicka på **"Generate"**
+- Klicka på **"Generate New Token"**
+- Ge token ett beskrivande namn, t.ex. `Docker Hub-token`
+- **Access permissions:** Välj **Read & Write** för att möjliggöra både nedladdning (pull) och uppladdning (push) av images
+- Klicka på **"Generate"**
 
-4. **Kopiera token direkt:**
+**Steg 4:Kopiera token direkt:**
 
-   Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare använda för CI/CD-deployment för att autentisera mot Docker Hub.
+Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare använda för CI/CD-deployment för att autentisera mot Docker Hub.
 
 # Skapandet av Dockerfile
 
