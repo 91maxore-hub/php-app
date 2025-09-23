@@ -301,17 +301,17 @@ cd ~/nginx-reverse-proxy
 
 **Steg 2:** Skapa **docker-compose.yml**
 
-🧱 docker-compose.yml
-
-Docker Compose-filen gör följande:
+**Docker Compose-filen** (php-app/docker-compose.yml) gör följande:
 
 1. Startar en PHP + nginx-app med miljövariabler för domän och certifikat.
 2. Startar en nginx reverse proxy för att hantera trafik och SSL.
 3. Startar en tjänst som automatiskt fixar och förnyar SSL-certifikat.
 4. Delar volymer för certifikat och konfiguration mellan tjänsterna.
-5. Kopplar ihop allt i ett gemensamt Docker-nätverk.
+5. Kopplar ihop allt i ett gemensamt Docker-nätverk.  
 
 Jag placerade docker-compose.yml i samma mapp som vi skapade i förgående steg (**nginx-reverse-proxy**) med följande innehåll som definierade alla tre containrar:
+
+🧱 docker-compose.yml
 
 ```yaml
 version: '3'
