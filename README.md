@@ -26,14 +26,38 @@ Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan 
 Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används som logobild för webbplatsen.  
 Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
 
-# Skapandet av Docker Hub-repo
+# Skapandet av ett Docker Hub-repository
 
 Efter att projektstrukturen var klar (med **index.php**, **style.css**, **logo2.png**), är det snart dags att paketera projektet i en Docker-image och publicera den på Docker Hub.
-För att börja med detta måste man först skapa ett repo på Docker Hub som ska hålla min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
+För att börja med detta måste man först skapa ett repository på Docker Hub som ska lagra och distribuera min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
 
 Dessutom behövs en **Dockerfile** och en **default.conf** som jag kommer gå igenom i nästa steg.
 
 ![alt text](image.png)
+
+Följ stegen nedan för att skapa ett **Docker Hub-repository**
+
+**Steg 1: Logga in på Docker Hub:**
+
+Gå till [https://hub.docker.com/repositories/ditt-användarnamn](https://hub.docker.com/repositories/ditt-användarnamn)
+
+**Steg 2: Navigera till dina repositories:**
+
+Du kommer direkt till listan över repositories under ditt konto.
+
+![alt text](image-15.png)
+
+**Steg 3: Skapa ett nytt repository:**
+
+Klicka på **"Create a Repository"** längst upp till höger.
+
+![alt text](image-16.png)
+
+**Steg 4: Fyll i repository-information:**
+
+**Repository Name:** Ange ett namn för ditt repo, t.ex. `php-app` kommer bli **ditt-användarnamn**/`php-app` senare när du ska bygga och pusha Docker-image
+**Visibility:** Välj om ditt repo ska vara **Public** eller **Private**
+**Description:** Lägg till en kort beskrivning av vad repot innehåller
 
 # Skapandet av Docker Hub-token
 
@@ -54,11 +78,11 @@ I inställningsmenyn, klicka på **"Personal Access Tokens"**.
 **Steg 3: Skapa en ny token:**
 
 - Klicka på **"Generate New Token"**
-- Ge token ett beskrivande namn, t.ex. `Docker Hub-token`
+- Ge token ett namn, t.ex. `Docker Hub-token`
 - **Access permissions:** Välj **Read & Write** för att möjliggöra både nedladdning (pull) och uppladdning (push) av images
 - Klicka på **"Generate"**
 
-**Steg 4:Kopiera token direkt:**
+**Steg 4: Kopiera token direkt:**
 
 Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare använda för CI/CD-deployment för att autentisera mot Docker Hub.
 
