@@ -31,7 +31,7 @@ Tittar man på själv appens hemsida innehåller **index.php** själva innehåll
 Efter att projektstrukturen var klar (med **index.php**, **style.css**, **logo2.png**), är det snart dags att paketera projektet i en Docker-image och publicera den på Docker Hub.
 För att börja med detta måste man först skapa ett repository på Docker Hub som ska lagra och distribuera min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
 
-Dessutom behövs en **Dockerfile** och en **default.conf** som jag kommer gå igenom i nästa steg.
+Dessutom behövs en **Dockerfile** och en **default.conf** som jag kommer gå igenom efter vi skapat Docker Hub-repo och token.
 
 ![alt text](image.png)
 
