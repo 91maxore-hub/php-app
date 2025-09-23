@@ -456,7 +456,7 @@ mkdir -p .github/workflows
 7. Uppdaterar och startar containrarna med Docker Compose  
 (Kör **docker-compose pull** och **docker-compose up -d** för att rulla ut den nya imagen)
 
-## 🧱 docker-image.yml
+## 📄 docker-image.yml
 
 ```yaml
 name: Bygg och pusha Docker-image
