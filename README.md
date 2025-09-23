@@ -517,11 +517,11 @@ https://github.com/91maxore-hub/php-app och granska resultaten. (byt ut mot ditt
 
 Navigera sedan till fliken **Actions**.
 
-Om CI/CD är korrekt konfigurerat bör du se att de senaste körningarna är markerade med en **grön bock** samt en **status** som visar **Success**.
+Om CI/CD är korrekt konfigurerat bör du se att de senaste körningarna är markerade med en **grön bock** som nedan:  
 
 ![alt text](image-10.png)
 
-Exempel på ett lyckat arbetsflöde:
+Dessutom en **status** som visar **Success**.  Exempel på ett lyckat arbetsflöde:
 
 **build-and-push — Success**
 
