@@ -153,6 +153,15 @@ docker run -d -p 8080:80 91maxore/php-nginx-app:latest
 
 **Notera:** Att den mappar port 80 inne i containern (där nginx kör) till port 8080 lokalt på min dator.
 
+# Steg 9: Kontrollera att containern körs
+För att se om containern är igång kan du använda:
+
+```bash
+docker ps
+```
+
+Detta borde returneras med din container, ex. 91maxore/php-nginx-app i mitt fall.
+
 Sedan kunde jag öppna webappen i webbläsaren via:
 ```bash
 http://localhost:8080
@@ -493,8 +502,25 @@ För att kontrollera att workflow-filen och CI/CD-deploymen­t fungerar korrekt,
 git add .github/workflows/docker-image.yml && git commit -m "Lägg till GitHub Actions workflow för CI/CD" && git push origin master
 ```
 
+**Steg 6: Pusha ändringar till GitHub**  
+För att sedan varje gång pusha ändringar som du gör i filer ange följande kommando:
+```bash
+git add . && git commit -m "CI/CD Pipeline" && git push origin master
+```
+
+Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en CI/CD-automatiserings deployment så att Docker-imagen alltid håller sig uppdaterad, och därav container-hosten som hostar appen med.
+
+
 **Steg 6: Verifiering av CI/CD funktionalitet**
-Bege dig över till https://github.com/91maxore-hub/php-app och granska resultaten.
+Bege dig över till https://github.com/91maxore-hub/php-app och granska resultaten. (byt ut mot din github-repo)
+
+Ifall CI/CD fungerar korrekt borde du se grön-markerade resultat som nedan:
+
+![alt text](image-10.png)
+
+Och en status som är markerad som **Success**
+
+![alt text](image-11.png)
 
 ✅ Resultat
 
