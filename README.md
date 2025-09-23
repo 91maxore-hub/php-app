@@ -123,7 +123,7 @@ php-nginx-app = repo på Docker Hub
 docker build -t 91maxore/php-nginx-app:latest .
 ```
 
-**Steg 6: Logga in på Docker Hub**
+# 🛠️ Steg 6: Logga in på Docker Hub
 
 Logga in på Docker Hub via terminalen:
 ```bash
@@ -133,7 +133,7 @@ docker login
 Angav mitt användarnamn och lösenord som jag använder till Docker Hub.
 
 
-**Steg 7: Pusha Docker-image till Docker Hub**
+# 🚀 Steg 7: Pusha Docker-image till Docker Hub
 
 När imagen är byggd och du är inloggad, pusha imagen till Docker Hub med:
 ```bash
@@ -145,7 +145,7 @@ Nu ligger den på Docker Hub:
 
 🔗 https://hub.docker.com/repository/docker/91maxore/php-nginx-app/
 
-**Steg 8: Testa containern lokalt**  
+# Steg 8: Testa containern lokalt
 Innan vi går vidare behöver vi först testa att containern fungerar som den ska, och därmed testar vi den lokalt först.  Så jag började med att testköra den med:
 ```bash
 docker run -d -p 8080:80 91maxore/php-nginx-app:latest
