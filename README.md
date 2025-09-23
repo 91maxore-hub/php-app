@@ -49,15 +49,15 @@ Du kommer direkt till listan över repositories under ditt konto.
 
 **Steg 3: Skapa ett nytt repository:**
 
-Klicka på **"Create a Repository"** längst upp till höger.
+Klicka på **"Create a Repository"** längst bort till höger.
 
 ![alt text](image-16.png)
 
 **Steg 4: Fyll i repository-information:**
 
-**Repository Name:** Ange ett namn för ditt repo, t.ex. `php-app` kommer bli **ditt-användarnamn**/`php-app` senare när du ska bygga och pusha Docker-image
-**Visibility:** Välj om ditt repo ska vara **Public** eller **Private**
-**Description:** Lägg till en kort beskrivning av vad repot innehåller
+**Repository Name:** Ange ett namn för ditt repo, t.ex. `php-app` kommer bli **ditt-användarnamn**/`php-app` senare när du ska bygga och pusha Docker-image  
+**Visibility:** Välj om ditt repo ska vara **Public** eller **Private**  
+**Description:** Lägg till en kort beskrivning av vad repot innehåller  
 
 # Skapandet av Docker Hub-token
 
