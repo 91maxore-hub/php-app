@@ -61,7 +61,7 @@ Klicka på **"Create a Repository"** längst bort till höger.
 
 # Skapandet av Docker Hub-token
 
-Följ stegen nedan för att skapa en **Docker Hub-token** som senare kommer användas för autentisering för CI/CD-deployment.
+Följ stegen nedan för att skapa en **Docker Hub-token** som senare kommer att sparas som GitHub Secret och användas för autentisering för CI/CD-deployment.
 
 **Steg 1: Navigera till Account Settings:**
 
@@ -84,7 +84,7 @@ I inställningsmenyn, klicka på **"Personal Access Tokens"**.
 
 **Steg 4: Kopiera token direkt:**
 
-Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare använda för CI/CD-deployment för att autentisera mot Docker Hub.
+Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare spara som en GitHub Secret och använda för CI/CD-deployment för att autentisera mot Docker Hub.
 
 # Skapandet av Dockerfile
 
