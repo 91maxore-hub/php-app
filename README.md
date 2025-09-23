@@ -564,28 +564,28 @@ På så sätt är delar av infrastrukturen – främst allt som rör Docker - so
 
 # 🔒 Användning av säkerhet
 
-1. **Inga hårdkodade värden i koden**
-   Alla känsliga uppgifter (som Docker Hub-inloggning och SSH-nycklar) lagras säkert som **GitHub Secrets**, vilket gör att de aldrig syns i koden.
+1. **Inga hårdkodade värden i koden**  
+   Alla känsliga uppgifter (som Docker Hub-inloggning och SSH-nycklar etc.) lagras säkert som **GitHub Secrets**, vilket gör att de aldrig syns i koden.
 
-2. **Tvingad HTTPS**
+2. **Tvingad HTTPS**  
    nginx-konfiguration ser till att alla besökare automatiskt omdirigeras till **HTTPS** ifall dom försöker surfa in via http://wavvy.se vilket skyddar kommunikationen mellan användare och server, istället kommer dom omdirigeras till https://wavvy.se
 
-3. **Automatiska SSL-certifikat**
-   Jag använder **Let's Encrypt** tillsammans med **nginx-proxy-companion** för att automatiskt få och förnya **SSL-certifikat**, utan manuell hantering.
+3. **Automatiska SSL-certifikat**  
+   Jag använder **Let's Encrypt** för att automatiskt få och förnya **SSL-certifikat**, utan manuell hantering.
 
-4. **Reverse proxy**
-   Jag använder en **reverse proxy** som hanterar all inkommande trafik och kopplar rätt domän till rätt container – på ett säkert och kontrollerat sätt.
+4. **Reverse proxy**  
+   Jag använder en **reverse proxy** som hanterar all inkommande trafik och kopplar rätt domän till rätt container – på ett säkert sätt.
 
-5. **Isolerade Docker-containrar**
+5. **Isolerade Docker-containrar**  
    Applikationen körs i **Docker-containrar**, vilket gör att varje tjänst är isolerad från resten av systemet.
 
-6. **Säker kommunikation mellan containrar via Docker-nätverk**
+6. **Säker kommunikation mellan containrar via Docker-nätverk**  
    Alla tjänster är kopplade till samma isolerade Docker-nätverk (webnet), vilket gör att intern trafik sker privat och inte exponeras utanför hosten.
 
-7. **Säker CI/CD-deployment**
+7. **Säker CI/CD-deployment**  
    Uppdatering av servern sker via **automatisk och säker SSH-anslutning** direkt från GitHub Actions, utan behov av manuell inloggning.
 
-8. **Automatiska image-uppdateringar via CI/CD**
+8. **Automatiska image-uppdateringar via CI/CD**  
    CI/CD-pipeline bygger och pushar en ny Docker-image varje gång kod ändras, vilket gör att du alltid kör den senaste versionen.
 
 Anledningen till varför jag inte är behov av en **Bastion-host** är för att all serveruppdatering och deployment sker automatiskt genom GitHub Actions via CI/CD med säker SSH-nyckelautentisering.
