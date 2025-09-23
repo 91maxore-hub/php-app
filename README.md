@@ -8,7 +8,7 @@ Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje p
 
 GitHub Repo: https://github.com/91maxore-hub/php-app
 
-# 🛠️ Skapandet av projektstruktur och grundfiler
+# Skapandet av projektstruktur och grundfiler
 
 | Katalog / Fil            | Typ  | Beskrivning                                               |
 | ------------------------ | ---- | --------------------------------------------------------- |
@@ -26,14 +26,14 @@ Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan 
 Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används som logobild för webbplatsen.  
 Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
 
-# 🛠️ Skapandet av Docker Hub-repo
+# Skapandet av Docker Hub-repo
 
 Efter att projektstrukturen var klar (med **index.php**, **style.css**, **logo2.png**), är det snart dags att paketera projektet i en Docker-image och publicera den på Docker Hub.
 För att börja med detta måste man först skapa ett repo på Docker Hub som ska hålla min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
 
 ![alt text](image.png)
 
-# 🛠️ Skapandet av Dockerfile
+# Skapandet av Dockerfile
 
 Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, nginx, och kopierar in mina applikations-filer från **php-app** (projektmappen) samt en egen nginx-konfiguration.  
 **Kortfattat:** en Dockerfile är en fil som beskriver hur ens Docker-image ska byggas.
@@ -75,7 +75,7 @@ EXPOSE 80
 CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
 ```
 
-# 🛠️ Skapandet av nginx-konfiguration (default.conf)
+# Skapandet av nginx-konfiguration (default.conf)
 
 Jag skapade även **default.conf** som är en typ av nginx-konfigurations fil, där jag konfigurerade nginx att peka på rätt katalog och hantera PHP-filer.
 Den styr även hur webbservern hanterar filer och PHP-kod för att säkerställa att webbplatsen fungerar korrekt och säkert.
@@ -124,7 +124,7 @@ server {
 }
 ```
 
-# 🛠️ Byggandet av Docker Image och ladda upp till Docker Hub
+# Byggandet av Docker Image och ladda upp till Docker Hub
 
 ## Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.
 
