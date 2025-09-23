@@ -399,6 +399,8 @@ För att konfigurera SSL och domännamnet använde jag tre miljövariabler som a
 Dessa värden sattes i en .env-fil, som senare under CI/CD kommer att genereras automatiskt av GitHub Actions under deployment.  
 Filen placeras i **nginx-reverse-proxy**-mappen som allt som rör docker/reverse proxy-konfiguration på container-hosten.
 
+![alt text](image-12.png)
+
 # 🚀 Automatiserad deployment med GitHub Actions
 
 För att förenkla hela automatiseringsprocessen byggde och pushade jag min Docker-image automatiskt via GitHub Actions, och deployade den sedan direkt till servern via SSH. Allt detta kommer ske via min docker-image.yml
