@@ -582,10 +582,13 @@ På så sätt är delar av infrastrukturen – främst allt som rör Docker - so
 6. **Säker kommunikation mellan containrar via Docker-nätverk**  
    Alla tjänster är kopplade till samma isolerade Docker-nätverk (webnet), vilket gör att intern trafik sker privat och inte exponeras utanför hosten.
 
-7. **Säker CI/CD-deployment**  
+7. **Endast nödvändiga portar**
+   För att minska hoten utifrån är endast portarna 22 (SSH), 80 (HTTP) och 443 (HTTPS) öppna på container-hosten. Alla andra portar är stängda enligt bästa praxis, vilket begränsar exponeringen av tjänster och förbättrar säkerheten.
+
+8. **Säker CI/CD-deployment**  
    Uppdatering av servern sker via **automatisk och säker SSH-anslutning** direkt från GitHub Actions, utan behov av manuell inloggning.
 
-8. **Automatiska image-uppdateringar via CI/CD**  
+9. **Automatiska image-uppdateringar via CI/CD**  
    CI/CD-pipeline bygger och pushar en ny Docker-image varje gång kod ändras, vilket gör att du alltid kör den senaste versionen.
 
 Anledningen till varför jag inte är behov av en **Bastion-host** är för att all serveruppdatering och deployment sker automatiskt genom GitHub Actions via CI/CD med säker SSH-nyckelautentisering.
