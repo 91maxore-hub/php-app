@@ -272,7 +272,7 @@ http://4.231.236.186
 **Det är viktigt att notera att port 80 (för HTTP) och/eller port 443 (för HTTPS) behöver vara öppen i brandväggen på Azure för att sidan ska kunna nås.**
 **Tänk på att du kan behöva använda sudo om du inte har root-permissions.**
 
-# 🌐 Domännamn istället för publikt IP (wavvy.se via Loopia)
+# 🌐 Domän istället för publikt IP (wavvy.se via Loopia)
 
 För att göra webappen tillgänglig via ett eget domännamn, valde jag att koppla min domän **wavvy.se** som jag köpt via Loopia, till container-hosten istället för att använda dess publik IP-adress direkt. Främst eftersom jag inte vill exponera serverns publika IP.
 
