@@ -8,7 +8,7 @@ Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje p
 
 GitHub Repo: https://github.com/91maxore-hub/php-app
 
-# 🛠️ Steg 1 – Skapandet av projektstruktur och grundfiler
+# 🛠️ Skapandet av projektstruktur och grundfiler
 
 | Katalog / Fil            | Typ  | Beskrivning                                               |
 | ------------------------ | ---- | --------------------------------------------------------- |
@@ -26,14 +26,14 @@ Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan 
 Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används som logobild för webbplatsen.  
 Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
 
-# 🛠️ Steg 2: Paketera som Docker Image och ladda upp till Docker Hub
+# 🛠️ Skapandet av Docker Hub-repo
 
 Efter att projektstrukturen var klar (med **index.php**, **style.css**, **logo2.png**), är det snart dags att paketera projektet i en Docker-image och publicera den på Docker Hub.
 För att börja med detta måste man först skapa ett repo på Docker Hub som ska hålla min Docker-image som jag döpte till **php-nginx-app** (Se bilden nedan)
 
 ![alt text](image.png)
 
-# 🛠️ Steg 3: Skapandet av Dockerfile
+# 🛠️ Skapandet av Dockerfile
 
 Jag skapade därefter en Dockerfile som installerar PHP 8.2 med FPM, nginx, och kopierar in mina applikations-filer från **php-app** (projektmappen) samt en egen nginx-konfiguration.  
 **Kortfattat:** en Dockerfile är en fil som beskriver hur ens Docker-image ska byggas.
@@ -75,7 +75,7 @@ EXPOSE 80
 CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
 ```
 
-# 🛠️ Steg 4: Skapandet av nginx-konfiguration (default.conf)
+# 🛠️ Skapandet av nginx-konfiguration (default.conf)
 
 Jag skapade även **default.conf** som är en typ av nginx-konfigurations fil, där jag konfigurerade nginx att peka på rätt katalog och hantera PHP-filer.
 Den styr även hur webbservern hanterar filer och PHP-kod för att säkerställa att webbplatsen fungerar korrekt och säkert.
@@ -124,9 +124,11 @@ server {
 }
 ```
 
-# 🛠️ Steg 5: Byggandet av Docker Image och ladda upp till Docker Hub
+# 🛠️ Byggandet av Docker Image och ladda upp till Docker Hub
 
-## Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.**
+## Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.
+
+**Steg 1: Byggandet av Docker Image**
 
 Jag använde terminalen och angav följande kommando i projektmappen (där appens samtliga filer finns) för att bygga mina applikations-filer till en Docker-image och ge den en tagg.  
 **91maxore** = användarnamn  
@@ -136,7 +138,7 @@ Jag använde terminalen och angav följande kommando i projektmappen (där appen
 docker build -t 91maxore/php-nginx-app:latest .
 ```
 
-# 🛠️ Steg 6: Logga in på Docker Hub
+**Steg 2: Logga in på Docker Hub**
 
 Logga in på Docker Hub via terminalen:
 ```bash
@@ -146,7 +148,7 @@ docker login
 Angav mitt användarnamn och lösenord som jag använder till Docker Hub.
 
 
-# 🚀 Steg 7: Pusha Docker-image till Docker Hub
+**Steg 3: Pusha Docker-image till Docker Hub**
 
 När imagen är byggd och du är inloggad, pusha imagen till Docker Hub med:
 ```bash
@@ -158,7 +160,7 @@ Nu ligger den på Docker Hub:
 
 🔗 https://hub.docker.com/repository/docker/91maxore/php-nginx-app/
 
-# Steg 8: Testa containern lokalt
+**Steg 4: Testa containern lokalt**
 Innan vi går vidare behöver vi först testa att containern fungerar som den ska, och därmed testar vi den lokalt först.  Så jag började med att testköra den med:
 ```bash
 docker run -d -p 8080:80 91maxore/php-nginx-app:latest
@@ -166,7 +168,7 @@ docker run -d -p 8080:80 91maxore/php-nginx-app:latest
 
 **Notera:** Att den mappar port 80 inne i containern (där nginx kör) till port 8080 lokalt på min dator.
 
-# Steg 9: Kontrollera att containern körs
+**Steg 5: Kontrollera att containern körs**
 För att se om containern är igång kan du använda:
 
 ```bash
@@ -536,7 +538,7 @@ För att sedan varje gång pusha ändringar som du gör i filer ange följande k
 git add . && git commit -m "CI/CD Pipeline" && git push origin master
 ```
 
-Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en CI/CD-automatiserings deployment så att Docker-imagen alltid håller sig uppdaterad, och därav container-hosten som hostar appen med.
+Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en CI/CD-automatiserings deployment så att Docker-imagen alltid håller sig uppdaterad, och därav samma med container-hosten som hostar appen med.
 
 
 **Steg 7: Verifiering av CI/CD funktionalitet**  
