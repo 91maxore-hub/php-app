@@ -26,6 +26,8 @@ Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan 
 Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används som logobild för webbplatsen.  
 Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
 
+<div style="margin-top: 380px;"></div>
+
 # Skapandet av ett Docker Hub-repository
 
 Efter att projektstrukturen var klar (med **index.php**, **style.css**, **logo2.png**), är det snart dags att paketera projektet i en Docker-image och publicera den på Docker Hub.
@@ -43,9 +45,11 @@ Gå till [https://hub.docker.com/repositories/ditt-användarnamn](https://hub.do
 
 **Steg 2: Navigera till dina repositories:**
 
-Du kommer direkt till listan över repositories under ditt konto.
+Du kommer direkt till listan över repositories under ditt konto. 
 
-![alt text](image-15.png)
+<div style="page-break-inside: avoid;">
+  <img src="image-15.png" style="width:35%">
+</div>
 
 **Steg 3: Skapa ett nytt repository:**
 
@@ -61,6 +65,8 @@ Klicka på **"Create a Repository"** längst bort till höger.
 
 ![alt text](image-17.png)
 
+<div style="margin-top: 380px;"></div>
+
 # Skapandet av Docker Hub-token
 
 ### Följ stegen nedan för att skapa en **Docker Hub-token** som senare kommer att sparas som GitHub Secret och användas för autentisering för CI/CD-deployment
@@ -70,6 +76,8 @@ Klicka på **"Create a Repository"** längst bort till höger.
 Klicka på ditt profilnamn uppe till höger → välj **Account Settings**.
 
 ![alt text](image-13.png)
+
+<div style="margin-top: 400px;"></div>
 
 **Steg 2: Gå till Personal access tokens:**
 
@@ -83,6 +91,8 @@ Klicka på **"Generate New Token"** längst bort till höger.
 
 ![alt text](image-18.png)
 
+<div style="margin-top: 400px;"></div>
+
 **Steg 4: Skapa en ny token**
 
 - **Access token description:** Ge token ett namn, t.ex. `Docker Hub-token`
@@ -94,6 +104,8 @@ Klicka på **"Generate New Token"** längst bort till höger.
 **Steg 5: Kopiera token direkt:**
 
 Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare spara som en GitHub Secret och använda för CI/CD-deployment för att autentisera mot Docker Hub.
+
+<div style="margin-top: 400px;"></div>
 
 # Skapandet av Dockerfile
 
@@ -138,6 +150,8 @@ EXPOSE 80
 # Starta php-fpm i bakgrunden och nginx i förgrunden
 CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
 ```
+
+<div style="margin-top: 400px;"></div>
 
 # Skapandet av nginx-konfiguration (default.conf)
 
@@ -252,6 +266,8 @@ Där laddades min PHP-webapp utan konstigheter. Se bild nedan.
 
 ![alt text](image-1.png)
 
+<div style="margin-top: 400px;"></div>
+
 # Köra i en Container Host
 
 Efter att jag byggt och laddat upp Docker-imagen till Docker Hub, samt testat dess funktionalitet lokalt på datorn (som du kan läsa ovan)  Så är nästa steg att få en Azure VM att köra containern, så att appen kan nås därifrån via sitt publika IP hela tiden.
@@ -286,6 +302,8 @@ På din container host (Azure VM) kör detta kommando för att hämta din image:
 ```bash
 docker pull 91maxore/php-nginx-app:latest
 ```
+
+<div style="margin-top: 400px;"></div>
 
 **Steg 4: Kör containern**  
 Starta containern och exponera port 80 så att appen blir tillgänglig på serverns port 80 genom att ange följande:
@@ -322,6 +340,8 @@ docker rm php-nginx-app (eller container-id)
 
 Du bör se din container **php-nginx-app** (eller det du namngav din container ovan efter **--name**)
 
+<div style="margin-top: 400px;"></div>
+
 **Steg 6: Testa appens funktionalitet**  
 Gå till serverns publika IP-adress i webbläsaren:
 ```bash
@@ -335,6 +355,8 @@ http://4.231.236.186
 **Det är viktigt att notera att port 80 (för HTTP) och/eller port 443 (för HTTPS) behöver vara öppen i brandväggen på Azure för att sidan ska kunna nås.**
 **Tänk på att du kan behöva använda sudo om du inte har root-permissions.**
 
+<div style="margin-top: 400px;"></div>
+
 # 🌐 Domän istället för publikt IP (wavvy.se via Loopia)
 
 För att göra webappen tillgänglig via ett eget domännamn, valde jag att koppla min domän **wavvy.se** som jag köpt via Loopia, till container-hosten istället för att använda dess publik IP-adress direkt. Främst eftersom jag inte vill exponera serverns publika IP.
@@ -342,6 +364,8 @@ För att göra webappen tillgänglig via ett eget domännamn, valde jag att kopp
 Jag loggade in på Loopia och gick till DNS-inställningarna för domänen. Där uppdaterade jag A-posten så att wavvy.se pekar på min servers publika IP-adress. Efter en stund kunde appen nås via http://wavvy.se
 
 ![alt text](image-4.png)
+
+<div style="margin-top: 400px;"></div>
 
 # 🔁 Reverse Proxy och HTTPS med Docker + Let's Encrypt
 
@@ -373,6 +397,8 @@ cd ~/nginx-reverse-proxy
 5. Kopplar ihop allt i ett gemensamt Docker-nätverk.  
 
 Jag placerade **docker-compose.yml** i samma mapp som vi skapade i förgående steg (**nginx-reverse-proxy**) med följande innehåll som definierade alla tre containrar:
+
+<div style="margin-top: 400px;"></div>
 
 ## 📄 docker-compose.yml
 
@@ -453,6 +479,8 @@ Vi kan därmed granska att appen fungerar som den ska med HTTPS/SSL. Du kan äve
 
 Allt detta kommer sedan CI/CD via GitHub Actions lösa automatiskt via sin deployment-image, men vi testkör först dess funktionalitet för att se att allt fungerar som det ska.
 
+<div style="margin-top: 400px;"></div>
+
 # 🔒 Automatisk HTTPS med miljövariabler
 
 För att konfigurera SSL och domännamnet använde jag tre miljövariabler som app-containern läser in: (under **environment**-delen i docker-compose.yml)
@@ -481,6 +509,7 @@ cd ~/php-app
 ```bash
 git init && git add . && git commit -m "CI/CD Pipeline - Första commit"
 ```
+<div style="margin-top: 400px;"></div>
 
 **Steg 3: Skapa GitHub-repo**  
 Bege dig över till ditt GitHub-konto och skapa ett nytt repo på GitHub. (jag döpte min till **php-app2** enbart för att demonstrera)
@@ -505,6 +534,8 @@ Så skapa mappen och workflow-filen enligt strukturen som nedan:
 mkdir -p .github/workflows
 ```
 
+<div style="margin-top: 400px;"></div>
+
 **Workflow-filen** (.github/workflows/docker-image.yml) gör följande:
 
 1. Klona repot från GitHub
@@ -515,6 +546,8 @@ mkdir -p .github/workflows
 6. Skapar .env-fil på container-hosten med hjälp av GitHub Secrets
 7. Uppdaterar och startar containrarna med Docker Compose  
 (Kör **docker-compose pull** och **docker-compose up -d** för att rulla ut den nya imagen)
+
+<div style="margin-top: 800px;"></div>
 
 ## 📄 docker-image.yml
 
@@ -566,6 +599,8 @@ jobs:
             sudo docker-compose up -d
 ```
 
+<div style="margin-top: 400px;"></div>
+
 # 🔒 Så här lägger du till en GitHub Secret
 
 1. Öppna ditt repo på GitHub (ex. https://github.com/91maxore-hub/php-app)
@@ -582,6 +617,8 @@ Enligt bästa praxis ska inga känsliga värden, såsom IP-adresser, domännamn,
 # 🔒 GitHub Secrets-konfigurationer
 
 ![alt text](image-5.png)
+
+<div style="margin-top: 400px;"></div>
 
 | 🔒 **Secret**        | 💬 **Beskrivning / Värde**                                                            |
 | -------------------- | -------------------------------------------------------------------------------------- |
@@ -608,6 +645,8 @@ git add . && git commit -m "CI/CD Pipeline" && git push origin master
 
 Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en CI/CD-automatiserings deployment så att Docker-imagen alltid håller sig uppdaterad, och därav samma med container-hosten som hostar appen.
 
+
+<div style="margin-top: 400px;"></div>
 
 **Steg 7: Verifiering av CI/CD funktionalitet**  
 Gå till ditt GitHub-repo, till exempel:  
@@ -647,6 +686,8 @@ Jag använder Infrastructure as Code (IaC) genom att definiera applikationens in
 Jag använder också GitHub Actions för att automatisera hela deployment-processen. När jag pushar till master-branchen byggs en Docker‑image automatiskt och deployas till min server via SSH. Det lagras inga hårdkodade värden i min kod som domännamn och SSH-nycklar, utan alla värden hanteras säkert med GitHub Secrets.
 
 På så sätt är delar av infrastrukturen – främst allt som rör Docker - som containrar, webbserver och certifikat – definierade och hanterade genom kod. Detta gör det enklare att uppdatera miljön utan att göra allt manuellt.
+
+<div style="margin-top: 800px;"></div>
 
 # 🔒 Användning av säkerhet
 
