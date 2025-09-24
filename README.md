@@ -59,6 +59,8 @@ Klicka på **"Create a Repository"** längst bort till höger.
 **Visibility:** Välj om ditt repo ska vara **Public** eller **Private**  
 **Description:** Lägg till en kort beskrivning av vad repot innehåller  
 
+![alt text](image-17.png)
+
 # Skapandet av Docker Hub-token
 
 Följ stegen nedan för att skapa en **Docker Hub-token** som senare kommer att sparas som GitHub Secret och användas för autentisering för CI/CD-deployment.
@@ -77,10 +79,15 @@ I inställningsmenyn, klicka på **"Personal Access Tokens"**.
 
 **Steg 3: Skapa en ny token:**
 
-- Klicka på **"Generate New Token"**
+Klicka på **"Generate New Token"** längst bort till höger.
+
+![alt text](image-18.png)
+
 - Ge token ett namn, t.ex. `Docker Hub-token`
 - **Access permissions:** Välj **Read & Write** för att möjliggöra både nedladdning (pull) och uppladdning (push) av images
 - Klicka på **"Generate"**
+
+![alt text](image-19.png)
 
 **Steg 4: Kopiera token direkt:**
 
