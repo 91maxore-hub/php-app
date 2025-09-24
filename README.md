@@ -77,11 +77,13 @@ I inställningsmenyn, klicka på **"Personal Access Tokens"**.
 
 ![alt text](image-14.png)
 
-**Steg 3: Skapa en ny token:**
+**Steg 3: Navigera till skapandet av token:**
 
 Klicka på **"Generate New Token"** längst bort till höger.
 
 ![alt text](image-18.png)
+
+**Steg 4: Skapa en ny token**
 
 - Ge token ett namn, t.ex. `Docker Hub-token`
 - **Access permissions:** Välj **Read & Write** för att möjliggöra både nedladdning (pull) och uppladdning (push) av images
@@ -89,7 +91,7 @@ Klicka på **"Generate New Token"** längst bort till höger.
 
 ![alt text](image-19.png)
 
-**Steg 4: Kopiera token direkt:**
+**Steg 5: Kopiera token direkt:**
 
 Kopiera token direkt och spara den säkert. Du kommer **inte** kunna se den igen efteråt. Denna token kommer vi senare spara som en GitHub Secret och använda för CI/CD-deployment för att autentisera mot Docker Hub.
 
