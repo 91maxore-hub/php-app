@@ -620,6 +620,8 @@ Enligt bästa praxis ska inga känsliga värden, såsom IP-adresser, domännamn,
 
 <div style="margin-top: 400px;"></div>
 
+# 🔒 GitHub Secrets-tabell
+
 | 🔒 **Secret**        | 💬 **Beskrivning / Värde**                                                            |
 | -------------------- | -------------------------------------------------------------------------------------- |
 | `DOCKERHUB_USERNAME` | **Användarnamn för Docker Hub** – `91maxore`                                           |
