@@ -6,11 +6,11 @@ Docker-imagen baseras på PHP 8.2 med PHP-FPM och Nginx, och applikationen är k
 
 Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje push till master-grenen byggs en ny Docker-image, pushas till Docker Hub och deployas via SSH till en server där Docker Compose startar om containrarna med den nya versionen. Miljövariabler för domän och certifikat hanteras säkert via GitHub Secrets.
 
-<div align="center">
+# <div align="center">
   Max Oredson - Inlämningsuppgift 2 - Azure
 </div>
 
-**GitHub Repo: https://github.com/91maxore-hub/php-app**
+# **GitHub Repo: https://github.com/91maxore-hub/php-app**
 
 # Skapandet av projektstruktur och grundfiler
 
