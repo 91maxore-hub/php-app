@@ -55,9 +55,9 @@ Klicka på **"Create a Repository"** längst bort till höger.
 
 **Steg 4: Fyll i repository-information:**
 
-**Repository Name:** Ange ett namn för ditt repo, t.ex. `php-app` kommer bli **ditt-användarnamn**/`php-app` senare när du ska bygga och pusha Docker-image  
-**Visibility:** Välj om ditt repo ska vara **Public** eller **Private**  
-**Description:** Lägg till en kort beskrivning av vad repot innehåller  
+- **Repository Name:** Ange ett namn för ditt repo, t.ex. `php-app` kommer bli **ditt-användarnamn**/`php-app` senare när du ska bygga och pusha Docker-image  
+- **Visibility:** Välj om ditt repo ska vara **Public** eller **Private**  
+- **Description:** Lägg till en kort beskrivning av vad repot innehåller  
 
 ![alt text](image-17.png)
 
@@ -85,7 +85,7 @@ Klicka på **"Generate New Token"** längst bort till höger.
 
 **Steg 4: Skapa en ny token**
 
-- Ge token ett namn, t.ex. `Docker Hub-token`
+- **Access token description:** Ge token ett namn, t.ex. `Docker Hub-token`
 - **Access permissions:** Välj **Read & Write** för att möjliggöra både nedladdning (pull) och uppladdning (push) av images
 - Klicka på **"Generate"**
 
@@ -191,7 +191,7 @@ server {
 
 # Byggandet av Docker Image och ladda upp till Docker Hub
 
-**Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub.**
+### Nu är det dags att gå igenom stegen för att paketera projektet i en Docker-image och publicera den på Docker Hub
 
 **Steg 1: Byggandet av Docker Image**
 
@@ -349,9 +349,9 @@ För att säkra min webbapp och göra den tillgänglig via HTTPS, satte jag upp 
 
 **Jag använder tre containrar:**
 
-1. Min **php-nginx-app** (från Docker Hub)
+1. Min **php-nginx-app** (från Docker Hub) - **namngav den my-php-app**
 2. **nginx-proxy** – reverse proxy som lyssnar på trafik och omdirigerar till rätt container
-3. **letsencrypt-nginx-proxy-companion** – genererar och hanterar SSL-certifikat automatiskt
+3. **nginx-proxy-acme** – genererar och hanterar SSL-certifikat automatiskt
 
 **Steg 1: Skapa en mapp för projektet på container-hosten**
 
