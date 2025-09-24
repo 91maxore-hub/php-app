@@ -63,7 +63,7 @@ Klicka på **"Create a Repository"** längst bort till höger.
 
 # Skapandet av Docker Hub-token
 
-## Följ stegen nedan för att skapa en **Docker Hub-token** som senare kommer att sparas som GitHub Secret och användas för autentisering för CI/CD-deployment.
+## Följ stegen nedan för att skapa en **Docker Hub-token** som senare kommer att sparas som GitHub Secret och användas för autentisering för CI/CD-deployment**
 
 **Steg 1: Navigera till Account Settings:**
 
