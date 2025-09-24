@@ -2,11 +2,24 @@
 
 Min enkla webbapplikation är byggd med PHP och nginx som körs i en Docker-container.
 
-Applikationen körs tillsammans med en reverse proxy som hanterar inkommande trafik och vidarebefordrar den till rätt container. SSL-certifikat hanteras automatiskt via Let's Encrypt och en certifikatkompanjon.
+Applikationen körs tillsammans med en reverse proxy som hanterar inkommande trafik och vidarebefordrar den till rätt container. SSL-certifikat hanteras automatiskt via Let's Encrypt.
 
-Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje push till master-grenen byggs en ny Docker-image, pushas till Docker Hub och deployas via SSH till en server där Docker Compose startar om containrarna med den nya versionen. Miljövariabler för domän och certifikat hanteras säkert via GitHub Secrets.
+Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje push till master-grenen byggs en ny Docker-image, som pushas till Docker Hub och deployas via SSH till en server där Docker Compose startar om containrarna med den nya versionen. Miljövariabler för domän och certifikat hanteras säkert via GitHub Secrets.
 
-### **GitHub Repo: https://github.com/91maxore-hub/php-app**
+<p align="center" style="font-size: 20px; color: black;">
+  <strong>GitHub Repo:</strong>
+  <a href="https://github.com/91maxore-hub/php-app" style="color: black; font-weight: bold;">
+    https://github.com/91maxore-hub/php-app
+  </a>
+  <br><br>
+  <a href="https://wavvy.se" style="color: black; font-weight: bold;">
+    https://wavvy.se
+  </a>
+</p>
+
+![alt text](image-20.png)
+
+<div style="margin-top: 800px;"></div>
 
 # Skapandet av projektstruktur och grundfiler
 
@@ -26,7 +39,7 @@ Syftet med dessa filer är att skapa en minimal men fungerande webbsida som kan 
 Tittar man på själv appens hemsida innehåller **index.php** själva innehållet för sidan, **style.css** står för designen, och **logo2.png** används som logobild för webbplatsen.  
 Övriga filer kommer att presenteras med dess funktioner senare i dokumentationen.
 
-<div style="margin-top: 380px;"></div>
+<div style="margin-top: 800px;"></div>
 
 # Skapandet av ett Docker Hub-repository
 
@@ -62,6 +75,7 @@ Klicka på **"Create a Repository"** längst bort till höger.
 - **Repository Name:** Ange ett namn för ditt repo, t.ex. `php-app` kommer bli **ditt-användarnamn**/`php-app` senare när du ska bygga och pusha Docker-image  
 - **Visibility:** Välj om ditt repo ska vara **Public** eller **Private**  
 - **Description:** Lägg till en kort beskrivning av vad repot innehåller  
+- Klicka på **"Create"**
 
 ![alt text](image-17.png)
 
@@ -373,7 +387,7 @@ För att säkra min webbapp och göra den tillgänglig via HTTPS, satte jag upp 
 
 **Jag använder tre containrar:**
 
-1. Min **php-nginx-app** (från Docker Hub) - **namngav den my-php-app**
+1. Min **php-nginx-app** (från Docker Hub) - namngav den **my-php-app**
 2. **nginx-proxy** – reverse proxy som lyssnar på trafik och omdirigerar till rätt container
 3. **nginx-proxy-acme** – genererar och hanterar SSL-certifikat automatiskt
 
@@ -652,7 +666,7 @@ Detta kommer endast pusha ändrade filer till GitHub och därifrån utgöra en C
 
 **Steg 7: Verifiering av CI/CD funktionalitet**  
 Gå till ditt GitHub-repo, till exempel:  
-https://github.com/91maxore-hub/php-app och granska resultatet. (byt ut mot ditt repo)
+**https://github.com/91maxore-hub/php-app** och granska resultatet. (byt ut mot ditt repo)
 
 Navigera sedan till fliken **Actions**.
 
