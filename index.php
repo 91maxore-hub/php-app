@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
-    <title>Kontaktformulär</title>
+    <title>Wavvy AB - Startsida</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
 
         <!-- Företagsinfo-ruta -->
         <div class="info-container">
-            <h3>🏢 Om Wavvy AB – Din digitala partner - NEW</h3>
+            <h3>🏢 Om Wavvy AB – Din digitala partner</h3>
             <p><strong>Wavvy AB</strong> är din digitala partner inom webbutveckling och IT. Sedan 2010 har vi hjälpt företag att växa, effektivisera och lyckas i en allt mer digital värld.</p>
 
             <p>🌐 <strong>Webbdesign & webbutveckling:</strong><br>
@@ -28,8 +28,7 @@
             <p>☁️ <strong>Molntjänster:</strong><br>
             Vi erbjuder flexibla molnlösningar såsom Microsoft 365, backup, fjärråtkomst och säkerhetslösningar för moderna arbetsplatser.</p>
 
-            <p><strong>Adress:</strong> Exempelgatan 123, 123 45 Stad<br>
-            <strong>E-post:</strong> info@wavvy.se</p>
+            <p><strong>E-post:</strong> info@wavvy.se</p>
 
             <hr style="margin: 15px 0; border: none; border-top: 1px solid #ddd;">
 
