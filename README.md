@@ -1,4 +1,4 @@
-# Distribution av webapp med Docker och Github Actions
+<h1 align="center">Max Oredson - Azure</h1>
 
 Min enkla webbapplikation är byggd med PHP och nginx som körs i en Docker-container.
 
