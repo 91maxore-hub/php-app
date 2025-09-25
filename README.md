@@ -1,4 +1,4 @@
-<p align="center"><strong>Max Oredson - Azure</strong></p>
+<h1 align="center">Max Oredson - Azure</h1>
 
 Min enkla webbapplikation är byggd med PHP och nginx som körs i en Docker-container.
 
