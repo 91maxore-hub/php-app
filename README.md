@@ -1,4 +1,4 @@
-# Distribution av webapp med Docker och Github Actions
+# Max Oredson - Azure
 
 Min enkla webbapplikation är byggd med PHP och nginx som körs i en Docker-container.
 
@@ -622,8 +622,8 @@ jobs:
 3. Navigera till **Secrets and variables → Actions**
 4. Klicka på **"New repository secret"**
 5. Fyll i:
-   * **Name** – t.ex. `SERVER_HOST`
-   * **Secret** – `4.231.236.186`
+   - **Name** – t.ex. `SERVER_HOST`
+   - **Secret** – `4.231.236.186`
 6. Spara med **"Add secret"**
 
 Enligt bästa praxis ska inga känsliga värden, såsom IP-adresser, domännamn, SSH-nycklar eller e-postadresser etc. hårdkodas i koden. Istället lagras desssa uppgifter säkert som GitHub Secrets i repot för att skydda dem från obehörig åtkomst och för att underlätta säker hantering.
