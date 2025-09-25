@@ -4,7 +4,7 @@ Min enkla webbapplikation är byggd med PHP och nginx som körs i en Docker-cont
 
 Applikationen körs tillsammans med en reverse proxy som hanterar inkommande trafik och vidarebefordrar den till rätt container. SSL-certifikat hanteras automatiskt via Let's Encrypt.
 
-Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje push till master-grenen byggs en ny Docker-image, som pushas till Docker Hub och deployas via SSH till en server där Docker Compose startar om containrarna med den nya versionen. Miljövariabler för domän och certifikat hanteras säkert via GitHub Secrets.
+Hela bygg- och deployprocessen är automatiserad med GitHub Actions. Vid varje push byggs en ny Docker-image, som pushas till Docker Hub och deployas via SSH till en server där Docker Compose startar om containrarna med den nya versionen. Miljövariabler för domän och certifikat hanteras säkert via GitHub Secrets.
 
 <p align="center" style="font-size: 20px; color: black;">
   <strong>GitHub Repo:</strong>
